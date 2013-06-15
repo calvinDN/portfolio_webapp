@@ -1,0 +1,61 @@
+<div class="navbar navbar-fixed-top" style="z-index: 10;">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="#">Calvin Nichols</a>
+
+            <div class="nav-collapse collapse">
+
+                <ul class="nav">
+                    <li class="browse-menu"><a href="#/projects">Browse Projects</a></li>
+                    <li class="add-menu"><a href="#/projects/add"><i class="icon-edit icon-white"></i> Add Project</a></li>
+                </ul>
+
+                <ul class="nav pull-right">
+                    <li class="contact-menu"><a id="call-small-modal">Contact</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Resume <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-header">Traditional</li>
+                            <li class="divider"></li>
+                            <li><a href="#/resume/html">HTML</a></li>
+                            <li><a href="#/resume/pdf">PDF</a></li>
+                            <li class="nav-header">Code</li>
+                            <li class="divider"></li>
+                            <li><a href="https://github.com/calvinDN" target="_blank">Github</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<!-- Contact Modal -->
+<div id="contact-modal" class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 id="myModalLabel">Contact Form</h3>
+    </div>
+    <div class="modal-body">
+        <form name="contactform">
+            <fieldset>
+                <label>Name</label>
+                <input type="text" name="name" maxlength="50" size="30">
+                <label>Email</label>
+                <input type="text" name="email" maxlength="80" size="30" placeholder="email@example.com">
+                <label>Comments</label>
+                <textarea rows="3" name="comments" maxlength="1000"></textarea>
+            </fieldset>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="modal-submit btn btn-primary">Submit</button>
+        <button class="modal-close btn" data-dismiss="modal">Close</button>
+    </div>
+</div>

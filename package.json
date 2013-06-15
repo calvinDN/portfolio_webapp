@@ -1,0 +1,25 @@
+{
+    "name"        : "calvindn.com",
+    "description" : "personal webpage",
+    "version"     : "0.0.1",
+    "private"     : true,
+
+    "dependencies": {
+        "express"        : "3.x",
+        "mongodb"        : "1.1.8",
+        "socket.io"      : "0.9.10",
+        "mongoose"       : "3.6.x",
+        "nodemailer"     : "0.4.x",
+        "less-middleware": "0.1.x",
+        "underscore"     : "1.4.x"
+    },
+
+    "devDependencies" : {
+        "cli-color"      : "0.x.x"
+    },
+
+    "engines" : {
+        "node" : "0.10.x",
+        "npm"  : "1.1.49"
+    }
+}
