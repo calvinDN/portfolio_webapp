@@ -1,13 +1,12 @@
 define(function(require, exports, module) {
-	var $              = require('jquery');
-	var _              = require('underscore');
-	var Backbone       = require('Backbone');
-	var HomeTemplate   = require('text!templates/HomeView.html');
+	var $              = require('jquery'),
+        _              = require('underscore'),
+        Backbone       = require('Backbone'),
+        HomeTemplate   = require('text!templates/HomeView.html');
 
 module.exports = Backbone.View.extend({
 
     initialize: function () {
-        this.render();
     },
 
     render: function () {

@@ -1,18 +1,20 @@
 define(function(require, exports, module) {
-    var $           = require('jquery'),
-        Backbone    = require('Backbone'),
-        HomeView    = require('views/home'),
-        LoginView   = require('views/login'),
-        ProjectView = require('views/project'),
-        HeaderView  = require('views/header'),
-        Project     = require('models/Project'),
-        Projects    = require('models/ProjectCollection');
+    var $               = require('jquery'),
+        Backbone        = require('Backbone'),
+        HomeView        = require('views/home'),
+        LoginView       = require('views/login'),
+        AddProjectView  = require('views/addProject'),
+        ListProjectView = require('views/listProject'),
+        HeaderView      = require('views/header'),
+        Project         = require('models/Project'),
+        Projects        = require('models/ProjectCollection');
 
 module.exports = new (Backbone.Router.extend({
     currentView: null,
     routes: {
         ""             : "home",
         "login"        : "login",
+        "projects"     : "listProjects",
         "projects/add" : "addProject"
     },
 
@@ -39,12 +41,24 @@ module.exports = new (Backbone.Router.extend({
         var projects = new Projects();
         projects.url = "/projects";
 
-        this.registerView(new ProjectView({
+        this.registerView(new AddProjectView({
             collection: projects,
             el: $("#content")
         }));
         projects.fetch();
         this.headerView.selectMenuItem('add-menu');
+    },
+
+    listProjects: function() {
+        var projects = new Projects();
+        projects.url = "/projects";
+
+        this.registerView(new ListProjectView({
+            collection: projects,
+            el: $("#content")
+        }));
+        projects.fetch();
+        this.headerView.selectMenuItem('browse-menu');
     },
 
     registerView: function(view) {

@@ -1,9 +1,9 @@
 define(function(require, exports, module) {
-    var $              = require('jquery');
-    var _              = require('underscore');
-    var Bootstrap      = require('bootstrap');
-    var Backbone       = require('Backbone');
-    var HeaderTemplate = require('text!templates/HeaderView.html');
+    var $              = require('jquery'),
+        _              = require('underscore'),
+        Bootstrap      = require('bootstrap'),
+        Backbone       = require('Backbone'),
+        HeaderTemplate = require('text!templates/HeaderView.html');
 
 module.exports = Backbone.View.extend({
 
