@@ -5,11 +5,16 @@ require.config({
         Backbone    : '/lib/backbone.min',
         text        : '/lib/text',
         bootstrap   : '/lib/bootstrap.min',
-        templates   : '/tpl'
+        templates   : '/tpl',
+        // SHOULDDO: download and host own copy to remove external dependency
+        filepicker  : 'http://api.filepicker.io/v1/filepicker'
     },
     shim: {
         underscore : {
             exports : '_'
+        },
+        filepicker : {
+            exports : 'filepicker'
         },
         Backbone  : {
             deps  : [ "underscore", "jquery" ],
