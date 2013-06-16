@@ -12,7 +12,6 @@ module.exports = Backbone.View.extend({
     },
 
     render: function () {
-        //$(this.el).html(HeaderTemplate);
         this.$el.html(_.template(HeaderTemplate));
         return this;
     },

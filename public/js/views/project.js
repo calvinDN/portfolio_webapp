@@ -3,15 +3,18 @@ define(function(require, exports, module) {
     var _               = require('underscore');
     var Backbone        = require('Backbone');
     var ProjectTemplate = require('text!templates/ProjectView.html');
+    var Project         = require('models/Project');
+    var Projects        = require('models/ProjectCollection');
 
 module.exports = Backbone.View.extend({
 
     initialize: function () {
+        console.log("project view");
+        console.log(this.collection);
         this.render();
     },
 
     render: function () {
-        //$(this.el).html(ProjectTemplate);
         this.$el.html(_.template(ProjectTemplate));
         return this;
     },
@@ -21,7 +24,13 @@ module.exports = Backbone.View.extend({
     },
 
     saveProject: function () {
-        console.log('ready to save');
+        new Project({
+            name        : "Test",
+            last_commit : new Date(),
+            completed   : true,
+            description : "does this work?"
+        }).save();
+        //this.collection.push(newProject);
     },
 
     remove: function() {

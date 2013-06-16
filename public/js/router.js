@@ -1,10 +1,12 @@
 define(function(require, exports, module) {
-    var $           = require('jquery');
-    var Backbone    = require('Backbone');
-    var HomeView    = require('views/home');
-    var LoginView   = require('views/login');
-    var ProjectView = require('views/project');
-    var HeaderView  = require('views/header');
+    var $           = require('jquery'),
+        Backbone    = require('Backbone'),
+        HomeView    = require('views/home'),
+        LoginView   = require('views/login'),
+        ProjectView = require('views/project'),
+        HeaderView  = require('views/header'),
+        Project     = require('models/Project'),
+        Projects    = require('models/ProjectCollection');
 
 module.exports = new (Backbone.Router.extend({
     currentView: null,
@@ -20,10 +22,6 @@ module.exports = new (Backbone.Router.extend({
     },
 
     home: function(id) {
-        /*if (!this.homeView)
-            this.homeView = new HomeView();
-
-        $('#content').html(this.homeView.el);*/
         this.registerView(new HomeView({
             el: $("#content")
         }));
@@ -31,10 +29,6 @@ module.exports = new (Backbone.Router.extend({
     },
 
     login: function() {
-        /*if (!this.loginView)
-            this.loginView = new LoginView();
-
-        $('#content').html(this.loginView.el);*/
         this.registerView(new LoginView({
             el: $("#content")
         }));
@@ -42,23 +36,20 @@ module.exports = new (Backbone.Router.extend({
     },
 
     addProject: function() {
-        /*if (!this.projectView)
-            this.projectView = new ProjectView();
+        var projects = new Projects();
+        projects.url = "/projects";
 
-        $('#content').html(this.projectView.el);*/
         this.registerView(new ProjectView({
+            collection: projects,
             el: $("#content")
         }));
+        projects.fetch();
         this.headerView.selectMenuItem('add-menu');
     },
 
     registerView: function(view) {
-        if (this.currentView) {
+        if (this.currentView)
             this.currentView.remove();
-
-            //if (!$("#content").length)
-            //    $("#stage").append("<div id=\"content\"></div>");
-        }
 
         this.currentView = view;
         this.currentView.render();

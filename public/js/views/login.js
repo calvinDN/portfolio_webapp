@@ -11,7 +11,6 @@ module.exports = Backbone.View.extend({
     },
 
     render: function () {
-        //$(this.el).html(LoginTemplate);
         this.$el.html(_.template(LoginTemplate));
         return this;
     },

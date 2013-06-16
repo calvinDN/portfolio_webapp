@@ -37,8 +37,8 @@ footer {
 }
 
 #wrap > .container {
-    padding-top: 100px;
-    padding-bottom: 60px;
+  padding-top: 100px;
+  padding-bottom: 60px;
 }
 
 /* Custom page CSS
@@ -54,9 +54,9 @@ footer .container p {
 }
 
 .brand {
-    font-family: 'Yesteryear', cursive;
-    font-size: 3.5em;
-    color: #7676E6;
+  font-family: 'Yesteryear', cursive;
+  font-size: 3.5em;
+  color: #7676E6;
 }
 
 /* link without href to prevent url change */
