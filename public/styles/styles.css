@@ -64,9 +64,18 @@ footer .container p {
   cursor: pointer;
 }
 
-/**
- * REPLACED DARKSTRAP NAVBAR-INVERSE WITH BOOTSTRAPS NAVBAR-INVERSE
- */
+
+
+
+
+
+
+
+
+
+
+/* REPLACED DARKSTRAP NAVBAR-INVERSE WITH BOOTSTRAPS NAVBAR-INVERSE
+-------------------------------------------------- */
 .navbar-inverse .navbar-inner {
   background-color: #1b1b1b;
   background-image: -moz-linear-gradient(top, #222222, #111111);

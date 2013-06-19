@@ -1,11 +1,11 @@
-<div class="offset2 span8">
-	<form class="form-horizontal well">
+<div class="offset2 span8 addProject">
+	<form id="addProjectForm" class="form-horizontal well">
 		<fieldset>
 			<legend>Add Project</legend>
 			<div class="control-group">
 				<label class="control-label" for="name">Project Name</label>
 				<div class="controls">
-					<input id="name" placeholder="Awesome Project!" type="text">
+					<input id="name" placeholder="Awesome Project!" type="text" class="span9" maxlength="50">
 				</div>
 			</div>
 			<div class="control-group">
@@ -13,29 +13,63 @@
 					<button class="btn btn-small">Image(s)</button>
 				</div>
 			</div>
+			<!-- append image names here -->
 			<div class="control-group">
 				<label class="control-label" for="description">Description</label>
 				<div class="controls">
-					<textarea id="description" type="text" />
+					<textarea id="description" type="text" class="span9" maxlength="100"/>
 				</div>
 			</div>
 			<div class="control-group">
-				<label class="control-label" for="githubLink">Github Link</label>
+				<label class="control-label" for="github">Github Link</label>
 				<div class="controls">
-					<input id="githubLink" type="text">
+					<div class="input-prepend">
+				        <span class="add-on">http://</span>
+				        <input type="text" placeholder="" id="github" class="span10" maxlength="50">
+				    </div>
 				</div>
 			</div>
 			<div class="control-group">
-				<label class="control-label">Resources</label>
+				<div class="controls">
+					<label class="checkbox">
+						<input id="completed" type="checkbox" value="">
+						Project Completed?
+			        </label>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label"><strong>Add Resources</strong></label>
 			</div>
 			<div class="control-group">
 				<label class="control-label">1.</label>
 				<div class="controls">
-					<input id="resources" type="text">
+					<input id="resourceName-1" type="text" placeholder="Name" class="span9" maxlength="50">
 				</div>
 			</div>
+			<div class="control-group">
+				<div class="controls">
+					<textarea id="resourceDesc-1" type="text" placeholder="Description" class="span9" maxlength="100"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<div class="input-prepend">
+				        <span class="add-on">http://</span>
+				        <input type="text" placeholder="Link" id="github" class="span10" maxlength="50">
+				    </div>
+				</div>
+			</div>
+
+			<div class="displayAlert">
+				<div class="alert alert-success">
+	              <strong>Success!</strong>
+	              Project added to database.
+	            </div>
+            </div>
+
 			<div class="form-actions">
 				<button class="btn btn-primary save">Submit</button>
+				<input type="reset" class="btn" value="Clear">
 			</div>
 		</fieldset>
 	</form>
