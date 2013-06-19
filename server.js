@@ -4,12 +4,20 @@ var fs       = require('fs'),
 	http     = require('http'),
 	mongoose = require('mongoose'),
 	clc      = require('cli-color'),
-	_        = require('underscore');
-
+	_        = require('underscore'),
+    argv     = require('optimist')
+        .boolean(['w','p']) //wipe, populate
+        .argv
+    ;
 // settings
 // SHOULDDO: read from external config file
 var port = 8000;
 var dbPath = "mongodb://localhost/calvindn";
+
+// colors
+var success = clc.green;
+var warn    = clc.yellow;
+var info    = clc.blue;
 
 var app = express();
 
@@ -21,10 +29,15 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 // setup the DB
 mongoose.connect(dbPath, function onMongooseError(err){
-    if(err)
+    if (err)
 		throw err;
     else
-		console.log(clc.green("Success! ") + 'Connected to Mongo DB through Mongoose.');
+		console.log(success("Success! ") + 'Connected to Mongo DB through Mongoose.');
+
+    if (argv.c)
+        console.log(warn("-w Wiping database."));
+    if (argv.p)
+        console.log(info("-p Populating database."));
 });
 
 // require model files
@@ -37,5 +50,5 @@ fs.readdirSync('models').forEach(function(file) {
 var	project  = require('./routes/projects')(app);
 
 http.createServer(app).listen(app.get('port'), function () {
-    console.log(clc.green("Success! ") + "Server listening on port " + clc.blue(app.get('port')) + '.');
+    console.log(success("Success! ") + "Server listening on port " + info(app.get('port')) + '.');
 });

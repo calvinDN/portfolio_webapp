@@ -9,7 +9,7 @@ var schema = new mongoose.Schema({
     images      : [ String ],
     description : { type: String },
     github      : { type: String },
-    resources   : [ Resource ]       // sub document
+    resources   : [ mongoose.Schema.Types.Mixed ]       // sub document
 });
 
 var Project = module.exports = mongoose.model('Project', schema);

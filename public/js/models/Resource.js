@@ -6,6 +6,8 @@ define(function(require, exports, module) {
         urlRoot: "/projects",
         initialize: function () {
 
+        },
+        defaults: {
         }
     });
 
