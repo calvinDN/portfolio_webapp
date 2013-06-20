@@ -5,6 +5,7 @@ require.config({
         Backbone    : '/lib/backbone.min',
         text        : '/lib/text',
         bootstrap   : '/lib/bootstrap.min',
+        parsley     : '/lib/parsley.min',
         templates   : '/tpl',
         // SHOULDDO: download and host own copy to remove external dependency
         filepicker  : 'http://api.filepicker.io/v1/filepicker'

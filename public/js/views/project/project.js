@@ -2,7 +2,7 @@ define(function(require, exports, module) {
     var $               = require('jquery'),
         _               = require('underscore'),
         Backbone        = require('Backbone'),
-        ProjectTemplate = require('text!templates/ProjectView.html'),
+        ProjectTemplate = require('text!templates/project/ProjectView.html'),
         Project         = require('models/Project');
 
 // this.model is one project from the project collection

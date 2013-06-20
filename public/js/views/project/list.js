@@ -2,10 +2,10 @@ define(function(require, exports, module) {
     var $               = require('jquery'),
         _               = require('underscore'),
         Backbone        = require('Backbone'),
-        ProjectTemplate = require('text!templates/ProjectListingsView.html'),
+        ProjectTemplate = require('text!templates/project/ListView.html'),
         Project         = require('models/Project'),
         Projects        = require('models/ProjectCollection'),
-        ProjectView     = require("views/project");
+        ProjectView     = require("views/project/project");
 
 module.exports = Backbone.View.extend({
 

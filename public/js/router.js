@@ -3,8 +3,8 @@ define(function(require, exports, module) {
         Backbone        = require('Backbone'),
         HomeView        = require('views/home'),
         LoginView       = require('views/login'),
-        AddProjectView  = require('views/addProject'),
-        ListProjectView = require('views/projectListings'),
+        AddProjectView  = require('views/project/add'),
+        ListProjectView = require('views/project/list'),
         HeaderView      = require('views/header'),
         Project         = require('models/Project'),
         Projects        = require('models/ProjectCollection');

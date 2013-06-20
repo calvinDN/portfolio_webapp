@@ -2,7 +2,8 @@ define(function(require, exports, module){
     var $               = require('jquery'),
         _               = require('underscore'),
         Backbone        = require('Backbone'),
-        ProjectTemplate = require('text!templates/AddProjectView.html'),
+        Parsley         = require('parsley'),
+        ProjectTemplate = require('text!templates/project/AddView.html'),
         Resource        = require('models/Resource'),
         Project         = require('models/Project'),
         Projects        = require('models/ProjectCollection');
