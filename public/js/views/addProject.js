@@ -19,7 +19,8 @@ module.exports = Backbone.View.extend({
 
     events: {
         "click .save"  : "saveProject",
-        "click .close" : "closeAlert"
+        "click .close" : "closeAlert",
+        "click .clear" : "closeAlert"
     },
 
     // when .com is entered into resource link
@@ -55,7 +56,6 @@ module.exports = Backbone.View.extend({
                     this.$("#addProjectForm")[0].reset();
                 },1600);
                 self.updateAlert('alert-success');
-                console.log('here');
                 // SHOULDDO: Add this code to updateAlert
                 this.$('.alert').html('<a class="close">✕</a><strong>Success!</strong> Project added to database.');
                 this.$('.alert').animate({opacity:1});
@@ -76,6 +76,7 @@ module.exports = Backbone.View.extend({
 
     closeAlert: function (e){
         this.$(e.target).closest('.alert').animate({opacity:0});
+        this.$('.alert').animate({opacity:0});
     },
 
     gatherResources: function(resources){
