@@ -2,10 +2,10 @@ define(function(require, exports, module) {
     var $               = require('jquery'),
         _               = require('underscore'),
         Backbone        = require('Backbone'),
-        ProjectTemplate = require('text!templates/ListProjectView.html'),
+        ProjectTemplate = require('text!templates/ProjectListingsView.html'),
         Project         = require('models/Project'),
         Projects        = require('models/ProjectCollection'),
-        ProjectListItem = require("views/listItemProject");
+        ProjectView     = require("views/project");
 
 module.exports = Backbone.View.extend({
 
@@ -24,7 +24,7 @@ module.exports = Backbone.View.extend({
     renderCollection: function (collection) {
         var self = this;
         collection.each(function(project){
-            var projectItemView = (new ProjectListItem({
+            var projectItemView = (new ProjectView({
                 model : project
             })).render().el;
             $(projectItemView).appendTo(".project-list");

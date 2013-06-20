@@ -4,7 +4,7 @@ define(function(require, exports, module) {
         HomeView        = require('views/home'),
         LoginView       = require('views/login'),
         AddProjectView  = require('views/addProject'),
-        ListProjectView = require('views/listProject'),
+        ListProjectView = require('views/projectListings'),
         HeaderView      = require('views/header'),
         Project         = require('models/Project'),
         Projects        = require('models/ProjectCollection');

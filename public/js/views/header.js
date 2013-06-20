@@ -18,7 +18,8 @@ module.exports = Backbone.View.extend({
 
     events: {
         "click .contact-menu" : "contactModal",
-        "click .modal-submit" : "submitMessage"
+        "click .modal-submit" : "submitMessage",
+        "click #style-toggle" : "toggleStyle"
     },
 
     contactModal: function(){
@@ -32,7 +33,17 @@ module.exports = Backbone.View.extend({
         });
     },
 
-    selectMenuItem: function (menuItem) {
+    toggleStyle: function() {
+    },
+
+    reloadStylesheets: function() {
+        var queryString = '?reload=' + new Date().getTime();
+        $('link[rel="stylesheet"]').each(function () {
+            this.href = this.href.replace(/\?.*|$/, queryString);
+        });
+    },
+
+    selectMenuItem: function(menuItem) {
         $('.nav li').removeClass('active');
         if (menuItem) {
             $('.' + menuItem).addClass('active');
