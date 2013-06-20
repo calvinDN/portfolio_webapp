@@ -9,6 +9,7 @@ define(function(require, exports, module){
 
 module.exports = Backbone.View.extend({
     initialize: function (){
+
     },
 
     render: function (){
@@ -17,14 +18,20 @@ module.exports = Backbone.View.extend({
     },
 
     events: {
-        "click .save"  : "saveProject"
+        "click .save"  : "saveProject",
+        "click .close" : "closeAlert"
     },
 
     // when .com is entered into resource link
     // fadein('slow') a div for a new resource
     // can probably use $("#client")[0] to loop through them
+    //
+    // may be better to only fadein success alert and allow user to close
+    // it and then fadeout
 
     saveProject: function (){
+        var self = this;
+
         var resources = [];
         this.gatherResources(resources);
 
@@ -41,15 +48,34 @@ module.exports = Backbone.View.extend({
         }).save(null, {
             wait: true,
             success: function(response, model){
+                if (this.$('.alert').css('opacity') == 1)
+                    this.$('.alert').css({opacity:0});
+
                 setTimeout(function(){
                     this.$("#addProjectForm")[0].reset();
                 },1600);
-                this.$('.displayAlert').fadeIn('slow').delay(1600).fadeOut('slow');
+                self.updateAlert('alert-success');
+                console.log('here');
+                // SHOULDDO: Add this code to updateAlert
+                this.$('.alert').html('<a class="close">✕</a><strong>Success!</strong> Project added to database.');
+                this.$('.alert').animate({opacity:1});
             },
             error: function(response){
-                console.log(response);
+                if (this.$('.alert').css('opacity') == 1)
+                    this.$('.alert').css({opacity:0});
+                self.updateAlert('alert-error');
+                this.$('.alert').html('<a class="close">✕</a><strong>Error!</strong> Something went wrong.');
+                this.$('.alert').animate({opacity:1});
             }
         });
+    },
+
+    updateAlert: function(newClass){
+        this.$('.alert').removeClass('alert-success').removeClass('alert-error').removeClass('alert-warn').addClass(newClass);
+    },
+
+    closeAlert: function (e){
+        this.$(e.target).closest('.alert').animate({opacity:0});
     },
 
     gatherResources: function(resources){

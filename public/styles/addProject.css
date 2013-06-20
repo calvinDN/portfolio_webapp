@@ -1,3 +1,3 @@
-.addProject .displayAlert {
-    display: none;
+.addProject .alert {
+    opacity:0;
 }

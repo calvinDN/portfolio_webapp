@@ -17,3 +17,4 @@ IDEAS
     - server side validation
     - return an object with list of items that contain errors
     - call a function to apply alert class to each field
+    - implement search for projects

@@ -1,4 +1,4 @@
-<div class="offset2 span8 addProject">
+<div class="offset1 span10 addProject">
 	<form id="addProjectForm" class="form-horizontal well">
 		<fieldset>
 			<legend>Add Project</legend>
@@ -23,10 +23,7 @@
 			<div class="control-group">
 				<label class="control-label" for="github">Github Link</label>
 				<div class="controls">
-					<div class="input-prepend">
-				        <span class="add-on">http://</span>
-				        <input type="text" placeholder="" id="github" class="span10" maxlength="50">
-				    </div>
+					<input id="github" type="text" placeholder="" class="span9" maxlength="50" value="http://">
 				</div>
 			</div>
 			<div class="control-group">
@@ -53,20 +50,13 @@
 			</div>
 			<div class="control-group">
 				<div class="controls">
-					<div class="input-prepend">
-				        <span class="add-on">http://</span>
-				        <input type="text" placeholder="Link" id="github" class="span10" maxlength="50">
-				    </div>
+					<input id="resourceLink-1" type="text" placeholder="Link" class="span9" maxlength="50" value="http://">
 				</div>
 			</div>
-
-			<div class="displayAlert">
-				<div class="alert alert-success">
-	              <strong>Success!</strong>
-	              Project added to database.
-	            </div>
+			<div class="alert alert-success">
+				<a class="close">✕</a>
+             	<strong>Success!</strong> Project added to database.
             </div>
-
 			<div class="form-actions">
 				<button class="btn btn-primary save">Submit</button>
 				<input type="reset" class="btn" value="Clear">

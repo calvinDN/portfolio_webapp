@@ -9,12 +9,11 @@ module.exports = function (app) {
             if (err)
                 return res.send(500);
 
-            res.send(doc);
+            return res.send(200, doc);
         });
     });
 
     app.post("/projects", function (req, res) {
-        console.log(req.body);
         new Project(req.body).save(function (err, doc) {
             if (err)
                 return res.send(500);
