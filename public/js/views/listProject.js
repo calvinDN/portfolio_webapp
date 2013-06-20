@@ -10,6 +10,7 @@ define(function(require, exports, module) {
 module.exports = Backbone.View.extend({
 
     initialize: function () {
+        this.childViews = [];
         // due to asynchronous nature
         // make sure the collection is rendered after the models have populated collection
         this.collection.on("reset", this.renderCollection, this);
@@ -21,11 +22,13 @@ module.exports = Backbone.View.extend({
     },
 
     renderCollection: function (collection) {
+        var self = this;
         collection.each(function(project){
             var projectItemView = (new ProjectListItem({
                 model : project
             })).render().el;
             $(projectItemView).appendTo(".project-list");
+            self.childViews.push(projectItemView);
         });
     },
 
@@ -33,6 +36,12 @@ module.exports = Backbone.View.extend({
         this.undelegateEvents();
         this.$el.empty();
         this.stopListening();
+
+        _.each(this.childViews, function(childView){
+            if (childView.close)
+                childView.close();
+        });
+
         return this;
     }
 

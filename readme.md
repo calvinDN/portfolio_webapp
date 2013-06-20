@@ -7,6 +7,7 @@ TODO
     - sort projects but last github commit or something..
     - clean up child views
     - add less support
+    - move contact modal to it's own view
 
 IDEAS
 ==========
