@@ -19,9 +19,9 @@ module.exports = Backbone.View.extend({
     },
 
     events: {
-        "click .save"  : "saveProject",
+        "click .save"  : "validateForm",
         "click .close" : "closeAlert",
-        "click .clear" : "closeAlert"
+        "click .clear" : "clearForm"
     },
 
     // when .com is entered into resource link
@@ -30,6 +30,16 @@ module.exports = Backbone.View.extend({
     //
     // may be better to only fadein success alert and allow user to close
     // it and then fadeout
+    //
+    //
+    // VALIDATION / ALERTS IS A FUCKING MESS IN HERE
+
+    validateForm: function (){
+        if (this.$('#addProjectForm').parsley( 'validate' ))
+            this.saveProject();
+
+        this.$('.alert').animate({opacity:0});
+    },
 
     saveProject: function (){
         var self = this;
@@ -50,23 +60,24 @@ module.exports = Backbone.View.extend({
         }).save(null, {
             wait: true,
             success: function(response, model){
-                if (this.$('.alert').css('opacity') == 1)
-                    this.$('.alert').css({opacity:0});
+                if (self.$('.alert').css('opacity') == 1)
+                    self.$('.alert').css({opacity:0});
 
                 setTimeout(function(){
-                    this.$("#addProjectForm")[0].reset();
+                    self.$( '#addProjectForm' ).parsley( 'destroy' );
+                    self.$("#addProjectForm")[0].reset();
                 },1600);
                 self.updateAlert('alert-success');
-                // SHOULDDO: Add this code to updateAlert
-                this.$('.alert').html('<a class="close">✕</a><strong>Success!</strong> Project added to database.');
-                this.$('.alert').animate({opacity:1});
+                // SHOULDDO: Add self code to updateAlert
+                self.$('.alert').html('<a class="close">✕</a><strong>Success!</strong> Project added to database.');
+                self.$('.alert').animate({opacity:1});
             },
             error: function(response){
-                if (this.$('.alert').css('opacity') == 1)
-                    this.$('.alert').css({opacity:0});
+                if (self.$('.alert').css('opacity') == 1)
+                    self.$('.alert').css({opacity:0});
                 self.updateAlert('alert-error');
-                this.$('.alert').html('<a class="close">✕</a><strong>Error!</strong> Something went wrong.');
-                this.$('.alert').animate({opacity:1});
+                self.$('.alert').html('<a class="close">✕</a><strong>Error!</strong> Something went wrong.');
+                self.$('.alert').animate({opacity:1});
             }
         });
     },
@@ -78,6 +89,14 @@ module.exports = Backbone.View.extend({
     closeAlert: function (e){
         this.$(e.target).closest('.alert').animate({opacity:0});
         this.$('.alert').animate({opacity:0});
+        //if (this.$('.alert').hasClass('alert-success'))
+        //    this.$( '#addProjectForm' ).parsley( 'destroy' );
+    },
+
+    clearForm: function (){
+        this.$( '#addProjectForm' ).parsley( 'destroy' );
+        this.$('.alert').animate({opacity:0});
+        this.closeAlert();
     },
 
     gatherResources: function(resources){

@@ -5,7 +5,7 @@
 			<div class="control-group">
 				<label class="control-label" for="name">Project Name</label>
 				<div class="controls">
-					<input id="name" placeholder="Awesome Project!" type="text" class="span9" maxlength="50">
+					<input id="name" placeholder="Awesome Project!" type="text" class="span9" maxlength="50" data-required="true" data-notblank="true"/>
 				</div>
 			</div>
 			<div class="control-group">
@@ -17,19 +17,19 @@
 			<div class="control-group">
 				<label class="control-label" for="description">Description</label>
 				<div class="controls">
-					<textarea id="description" type="text" class="span9" maxlength="500"/>
+					<textarea id="description" type="text" class="span9" data-maxlength="500" maxlength="500" data-notblank="true"/>
 				</div>
 			</div>
 			<div class="control-group">
 				<label class="control-label" for="github">Github Link</label>
 				<div class="controls">
-					<input id="github" type="text" placeholder="" class="span9" maxlength="50" value="http://">
+					<input id="github" type="text" placeholder="" class="span9" maxlength="100" value="http://" data-type="urlstrict" data-maxlength="100" />
 				</div>
 			</div>
 			<div class="control-group">
 				<div class="controls">
 					<label class="checkbox">
-						<input id="completed" type="checkbox" value="">
+						<input id="completed" type="checkbox" name="completed" />
 						Project Completed?
 			        </label>
 				</div>
@@ -40,17 +40,17 @@
 			<div class="control-group">
 				<label class="control-label">1.</label>
 				<div class="controls">
-					<input id="resourceName-1" type="text" placeholder="Name" class="span9" maxlength="50">
+					<input id="resourceName-1" type="text" placeholder="Name" class="span9" maxlength="50" data-notblank="true" data-required="true" />
 				</div>
 			</div>
 			<div class="control-group">
 				<div class="controls">
-					<textarea id="resourceDesc-1" type="text" placeholder="Description" class="span9" maxlength="100"/>
+					<textarea id="resourceDesc-1" type="text" placeholder="Description" class="span9" maxlength="500" data-notblank="true" data-maxlength="500" data-required="true" />
 				</div>
 			</div>
 			<div class="control-group">
 				<div class="controls">
-					<input id="resourceLink-1" type="text" placeholder="Link" class="span9" maxlength="50" value="http://">
+					<input id="resourceLink-1" type="text" placeholder="Link" class="span9" maxlength="50" value="http://" data-type="urlstrict" data-required="true" />
 				</div>
 			</div>
 			<div class="alert alert-success">

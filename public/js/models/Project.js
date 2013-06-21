@@ -9,7 +9,7 @@ define(function(require, exports, module) {
         },
 
         validate: function(attrs) {
-            console.log(attrs);
+            /*console.log(attrs);
             var errstr = [];
 
             if (!attrs.name)
@@ -21,7 +21,7 @@ define(function(require, exports, module) {
                 errstr.push("description");
 
             if (!attrs.github)
-                errstr.push("github link");
+                errstr.push("github link");*/
 
             // not sure if I can check completed in anyway
 

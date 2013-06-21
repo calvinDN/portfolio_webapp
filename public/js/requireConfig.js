@@ -17,6 +17,9 @@ require.config({
         filepicker : {
             exports : 'filepicker'
         },
+        parsley  : {
+            deps : [ "jquery" ]
+        },
         Backbone  : {
             deps  : [ "underscore", "jquery" ],
             exports : "Backbone"
