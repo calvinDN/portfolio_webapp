@@ -1,0 +1,18 @@
+.list-project {
+    margin: 10px 15px 10px 15px;
+}
+
+.list-project ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.list-project .project-content {
+    margin-left: 20px;
+}
+
+.list-project ul li h5 {
+    margin-top: 0px;
+}

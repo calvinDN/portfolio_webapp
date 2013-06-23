@@ -37,7 +37,7 @@ footer {
 }
 
 #wrap > .container {
-  padding-top: 80px;
+  padding-top: 30px;
   padding-bottom: 60px;
 }
 
@@ -71,7 +71,7 @@ footer .container p {
 -------------------------------------------------- */
 
 input.parsley-success, textarea.parsley-success {
-  color: #DFF0D8 !important;
+  color: #FFF !important;
   background-color: #468847 !important;
   border: 1px solid #D6E9C6 !important;
 }

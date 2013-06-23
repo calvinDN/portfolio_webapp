@@ -8,15 +8,21 @@ define(function(require, exports, module) {
 // this.model is one project from the project collection
 module.exports = Backbone.View.extend({
     tagName: "li",
-    initialize: function () {
+    className: "list-project well",
+    initialize: function() {
     },
 
-    render: function () {
+    render: function() {
         this.$el.html(_.template(ProjectTemplate, this.model.toJSON()));
+        this.renderResources(this.model);
         return this;
     },
 
-    remove: function () {
+    renderResources: function(model) {
+        console.log(model.get("resources"));
+    },
+
+    remove: function() {
         this.undelegateEvents();
         this.$el.empty();
         this.stopListening();

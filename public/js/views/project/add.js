@@ -19,26 +19,26 @@ module.exports = Backbone.View.extend({
     },
 
     events: {
-        "click .save"  : "validateForm",
-        "click .close" : "closeAlert",
-        "click .clear" : "clearForm"
+        "click .add-resource" : "appendResourceHtml",
+        "click .save"         : "validateForm",
+        "click .close"        : "closeAlert",
+        "click .clear"        : "clearForm"
     },
 
-    // when .com is entered into resource link
-    // fadein('slow') a div for a new resource
+    //
     // can probably use $("#client")[0] to loop through them
-    //
-    // may be better to only fadein success alert and allow user to close
-    // it and then fadeout
-    //
     //
     // VALIDATION / ALERTS IS A FUCKING MESS IN HERE
 
+    appendResourceHtml: function() {
+
+    },
+
     validateForm: function (){
         if (this.$('#addProjectForm').parsley( 'validate' ))
-            this.saveProject();
+            return this.saveProject();
 
-        this.$('.alert').animate({opacity:0});
+        return this.$('.alert').animate({opacity:0});
     },
 
     saveProject: function (){
@@ -54,7 +54,7 @@ module.exports = Backbone.View.extend({
             name        : this.$("#name").val(),
             images      : images,
             description : this.$("#description").val(),
-            github      : this.$("#github").val(),
+            github      : "https://github.com/calvinDN/"+this.$("#github").val(),
             completed   : this.$('#completed').is(":checked"),
             resources   : resources
         }).save(null, {
@@ -73,6 +73,8 @@ module.exports = Backbone.View.extend({
                 self.$('.alert').animate({opacity:1});
             },
             error: function(response){
+                // MUSTDO: Investigate if this alert is being displayed correctly
+                console.log(response);
                 if (self.$('.alert').css('opacity') == 1)
                     self.$('.alert').css({opacity:0});
                 self.updateAlert('alert-error');
@@ -88,15 +90,13 @@ module.exports = Backbone.View.extend({
 
     closeAlert: function (e){
         this.$(e.target).closest('.alert').animate({opacity:0});
-        this.$('.alert').animate({opacity:0});
-        //if (this.$('.alert').hasClass('alert-success'))
-        //    this.$( '#addProjectForm' ).parsley( 'destroy' );
+        //this.$('.alert').animate({opacity:0});
     },
 
     clearForm: function (){
         this.$( '#addProjectForm' ).parsley( 'destroy' );
         this.$('.alert').animate({opacity:0});
-        this.closeAlert();
+        //this.closeAlert();
     },
 
     gatherResources: function(resources){

@@ -8,9 +8,12 @@ TODO
     - clean up child views
     - add less support
     - move contact modal to it's own view
+    - unit testing
 
 IDEAS
 ==========
+    - im thinking of making a simple, clean homepage linking to everything. very minimal css, js.
+        - ex. https://blooki.st/BlookElement/ShowTextPhoto?blookElementId=1962
 	- admin login slides in footer or something...
 
     validation

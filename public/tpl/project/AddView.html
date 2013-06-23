@@ -17,13 +17,13 @@
 			<div class="control-group">
 				<label class="control-label" for="description">Description</label>
 				<div class="controls">
-					<textarea id="description" type="text" class="span9" data-maxlength="500" maxlength="500" data-notblank="true"/>
+					<textarea id="description" type="text" class="span9" data-maxlength="500" maxlength="500" data-notblank="true" rows="5" />
 				</div>
 			</div>
 			<div class="control-group">
-				<label class="control-label" for="github">Github Link</label>
+				<label class="control-label" for="github">Github Repo</label>
 				<div class="controls">
-					<input id="github" type="text" placeholder="" class="span9" maxlength="100" value="http://" data-type="urlstrict" data-maxlength="100" />
+					<input id="github" type="text" placeholder="Name of Github Repository" class="span9" maxlength="100" value="" data-required="true" data-notblank="true" data-maxlength="100" />
 				</div>
 			</div>
 			<div class="control-group">
@@ -35,7 +35,10 @@
 				</div>
 			</div>
 			<div class="control-group">
-				<label class="control-label"><strong>Add Resources</strong></label>
+				<label class="control-label"><strong>Add Resource</strong></label>
+				<div class="controls">
+					<button class="btn btn-inverse add-resource"><i class="icon-plus icon-white"></i></button>
+				</div>
 			</div>
 			<div class="control-group">
 				<label class="control-label">1.</label>
