@@ -12,6 +12,8 @@ TODO
     - investigate how to reduce model count
     - paginator
     - guthub calls
+    - edit, remove projects
+    - clear a single resource on add
 
 IDEAS
 ==========

@@ -6,6 +6,7 @@ define(function(require, exports, module) {
         AddProjectView  = require('views/project/add'),
         ListProjectView = require('views/project/list'),
         HeaderView      = require('views/header'),
+        ErrorView       = require('views/error'),
         Project         = require('models/Project'),
         Projects        = require('models/ProjectCollection');
 
@@ -15,12 +16,20 @@ module.exports = new (Backbone.Router.extend({
         ""             : "home",
         "login"        : "login",
         "projects"     : "listProjects",
-        "projects/add" : "addProject"
+        "projects/add" : "addProject",
+        ":whatever"    : "notFound"
     },
 
     initialize: function() {
         this.headerView = new HeaderView();
         $('.header').html(this.headerView.el);
+    },
+
+    notFound: function(trash) {
+        this.registerView(new ErrorView({
+            el: $("#content")
+        }));
+        this.headerView.selectMenuItem();
     },
 
     home: function(id) {
