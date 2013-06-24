@@ -1,0 +1,21 @@
+<div id="resource-<%=number %>">
+<div class="control-group">
+    <label class="control-label">
+        <div class="resource-num"><%=number %>.
+        </div>
+    </label>
+    <div class="controls">
+        <input id="resourceName-<%=number %>" type="text" placeholder="Name" class="span9" maxlength="50" data-notblank="true" data-required="true" />
+    </div>
+</div>
+<div class="control-group">
+    <div class="controls">
+        <textarea id="resourceDesc-<%=number %>" type="text" placeholder="Description" class="span9" maxlength="500" data-notblank="true" data-maxlength="500" data-required="true" />
+    </div>
+</div>
+<div class="control-group">
+    <div class="controls">
+        <input id="resourceLink-<%=number %>" type="text" placeholder="Link" class="span9" maxlength="50" value="http://" data-type="urlstrict" data-required="true" />
+    </div>
+</div>
+</div>

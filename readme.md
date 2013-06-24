@@ -4,11 +4,14 @@ TODO
 ==========
 	- look into passport or some sort of authentification (request)
 	- email from contact form, maybe
-    - sort projects but last github commit or something..
+    - sort projects buy last github commit or something..
     - clean up child views
     - add less support
     - move contact modal to it's own view
     - unit testing
+    - investigate how to reduce model count
+    - paginator
+    - guthub calls
 
 IDEAS
 ==========

@@ -19,7 +19,11 @@ module.exports = Backbone.View.extend({
     },
 
     renderResources: function(model) {
-        console.log(model.get("resources"));
+        var resourceList = model.get("resources");
+        // MUSTDO: make this into a template, append to it
+        for (var i=0; i<resourceList.length; i++){
+            this.$(".project-resources").prepend("<li>"+resourceList[i].name+"</li>"+"<li>"+resourceList[i].description+"</li>"+"<li>"+resourceList[i].link+"</li>");
+        }
     },
 
     remove: function() {

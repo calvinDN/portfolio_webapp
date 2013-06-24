@@ -4,17 +4,19 @@ define(function(require, exports, module){
         Backbone        = require('Backbone'),
         Parsley         = require('parsley'),
         ProjectTemplate = require('text!templates/project/AddView.html'),
+        newResource     = require('text!templates/project/newResource.html'),
         Resource        = require('models/Resource'),
         Project         = require('models/Project'),
         Projects        = require('models/ProjectCollection');
 
 module.exports = Backbone.View.extend({
     initialize: function (){
-
+        this.resources = 0; // number of resources added to project
     },
 
     render: function (){
         this.$el.html(_.template(ProjectTemplate));
+        this.appendResourceHtml();
         return this;
     },
 
@@ -25,13 +27,24 @@ module.exports = Backbone.View.extend({
         "click .clear"        : "clearForm"
     },
 
-    //
     // can probably use $("#client")[0] to loop through them
     //
     // VALIDATION / ALERTS IS A FUCKING MESS IN HERE
 
-    appendResourceHtml: function() {
+    appendResourceHtml: function(e) {
+        if (typeof e != "undefined")
+            e.preventDefault();
+        // COULDDO: add a seperate view for resources
+        this.resources++;
+        this.$(".resourceList-append").append(_.template(newResource, {number: this.resources}));
+    },
 
+    removeResourceHtml: function() {
+        var len = this.resources;
+        for (var i=1; i < len+1; i++){
+            this.$("#resource-"+i).remove();
+            this.resources--;
+        }
     },
 
     validateForm: function (){
@@ -44,28 +57,27 @@ module.exports = Backbone.View.extend({
     saveProject: function (){
         var self = this;
 
-        var resources = [];
-        this.gatherResources(resources);
-
-        var images = [];
-        this.gatherImages(images);
+        var resourceList = [];
+        this.gatherResources(resourceList);
+        console.log(resourceList);
 
         new Project({
             name        : this.$("#name").val(),
-            images      : images,
             description : this.$("#description").val(),
             github      : "https://github.com/calvinDN/"+this.$("#github").val(),
             completed   : this.$('#completed').is(":checked"),
-            resources   : resources
+            resources   : resourceList
         }).save(null, {
             wait: true,
             success: function(response, model){
+                console.log(model);
                 if (self.$('.alert').css('opacity') == 1)
                     self.$('.alert').css({opacity:0});
 
                 setTimeout(function(){
                     self.$( '#addProjectForm' ).parsley( 'destroy' );
                     self.$("#addProjectForm")[0].reset();
+                    self.removeResourceHtml();
                 },1600);
                 self.updateAlert('alert-success');
                 // SHOULDDO: Add self code to updateAlert
@@ -96,17 +108,20 @@ module.exports = Backbone.View.extend({
     clearForm: function (){
         this.$( '#addProjectForm' ).parsley( 'destroy' );
         this.$('.alert').animate({opacity:0});
+        this.removeResourceHtml();
         //this.closeAlert();
     },
 
-    gatherResources: function(resources){
-        var i=1;
-        var item = new Resource({
-                name        : this.$("#resourceName-"+i).val(),
-                link        : this.$("#resourceLink-"+i).val(),
-                description : this.$("#resourceDesc-"+i).val()
-            });
-        resources.push(item);
+    // MUSTDO: this function needs to be updated
+    gatherResources: function(resourceList){
+        for (var i=1; i < this.resources+1; i++){
+            var item = new Resource({
+                    name        : this.$("#resourceName-"+i).val(),
+                    link        : this.$("#resourceLink-"+i).val(),
+                    description : this.$("#resourceDesc-"+i).val()
+                });
+            resourceList.push(item);
+        }
     },
 
     gatherImages: function(images){
