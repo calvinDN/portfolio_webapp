@@ -14,6 +14,7 @@ TODO
     - guthub calls
     - edit, remove projects
     - clear a single resource on add
+    - can I make name the key?
 
 IDEAS
 ==========

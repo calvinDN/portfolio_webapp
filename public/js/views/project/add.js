@@ -16,7 +16,6 @@ module.exports = Backbone.View.extend({
 
     render: function (){
         this.$el.html(_.template(ProjectTemplate));
-        this.appendResourceHtml();
         return this;
     },
 
@@ -31,7 +30,7 @@ module.exports = Backbone.View.extend({
     //
     // VALIDATION / ALERTS IS A FUCKING MESS IN HERE
 
-    appendResourceHtml: function(e) {
+    appendResourceHtml: function(e){
         if (typeof e != "undefined")
             e.preventDefault();
         // COULDDO: add a seperate view for resources
@@ -39,7 +38,7 @@ module.exports = Backbone.View.extend({
         this.$(".resourceList-append").append(_.template(newResource, {number: this.resources}));
     },
 
-    removeResourceHtml: function() {
+    removeResourceHtml: function(){
         var len = this.resources;
         for (var i=1; i < len+1; i++){
             this.$("#resource-"+i).remove();
@@ -48,6 +47,10 @@ module.exports = Backbone.View.extend({
     },
 
     validateForm: function (){
+        // this destroy prevents a bug that allows you to skip validation on resources
+        // that have been added a first (unsuccessful) submission attempt (and validation)
+        // prevents submitting blank resources
+        this.$( '#addProjectForm' ).parsley( 'destroy' );
         if (this.$('#addProjectForm').parsley( 'validate' ))
             return this.saveProject();
 
@@ -102,17 +105,14 @@ module.exports = Backbone.View.extend({
 
     closeAlert: function (e){
         this.$(e.target).closest('.alert').animate({opacity:0});
-        //this.$('.alert').animate({opacity:0});
     },
 
     clearForm: function (){
         this.$( '#addProjectForm' ).parsley( 'destroy' );
         this.$('.alert').animate({opacity:0});
         this.removeResourceHtml();
-        //this.closeAlert();
     },
 
-    // MUSTDO: this function needs to be updated
     gatherResources: function(resourceList){
         for (var i=1; i < this.resources+1; i++){
             var item = new Resource({
@@ -122,10 +122,6 @@ module.exports = Backbone.View.extend({
                 });
             resourceList.push(item);
         }
-    },
-
-    gatherImages: function(images){
-
     },
 
     remove: function(){
