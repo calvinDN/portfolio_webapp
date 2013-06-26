@@ -8,6 +8,9 @@ define(function(require, exports, module) {
 
         },
         defaults: {
+            name : null,
+            link : null,
+            description : null
         }
     });
 

@@ -23,12 +23,15 @@ module.exports = Backbone.View.extend({
         "click .add-resource" : "appendResourceHtml",
         "click .save"         : "validateForm",
         "click .close"        : "closeAlert",
-        "click .clear"        : "clearForm"
+        "click .clear"        : "clearForm",
+        "click .remove-rsc"   : "removeResourceHtml"
     },
 
-    // can probably use $("#client")[0] to loop through them
-    //
     // VALIDATION / ALERTS IS A FUCKING MESS IN HERE
+    //
+    // to handle remove resource use e.target to remove class
+    // dont decrement on removal and check before pulling the values
+    // on submission of form
 
     appendResourceHtml: function(e){
         if (typeof e != "undefined")
@@ -38,12 +41,20 @@ module.exports = Backbone.View.extend({
         this.$(".resourceList-append").append(_.template(newResource, {number: this.resources}));
     },
 
-    removeResourceHtml: function(){
+    clearResourceHtml: function(){
         var len = this.resources;
         for (var i=1; i < len+1; i++){
-            this.$("#resource-"+i).remove();
+            this.$(".resource-"+i).remove();
             this.resources--;
         }
+    },
+
+    removeResourceHtml: function(e){
+        //if (typeof e != "undefined")
+            //e.preventDefault();
+        $("."+e.target.classList[4]).remove();
+        //console.log(e.target.classList[4]);
+        //console.log(e);
     },
 
     validateForm: function (){
@@ -62,7 +73,6 @@ module.exports = Backbone.View.extend({
 
         var resourceList = [];
         this.gatherResources(resourceList);
-        console.log(resourceList);
 
         new Project({
             name        : this.$("#name").val(),
@@ -73,14 +83,13 @@ module.exports = Backbone.View.extend({
         }).save(null, {
             wait: true,
             success: function(response, model){
-                console.log(model);
                 if (self.$('.alert').css('opacity') == 1)
                     self.$('.alert').css({opacity:0});
 
                 setTimeout(function(){
                     self.$( '#addProjectForm' ).parsley( 'destroy' );
                     self.$("#addProjectForm")[0].reset();
-                    self.removeResourceHtml();
+                    self.clearResourceHtml();
                 },1600);
                 self.updateAlert('alert-success');
                 // SHOULDDO: Add self code to updateAlert
@@ -110,17 +119,19 @@ module.exports = Backbone.View.extend({
     clearForm: function (){
         this.$( '#addProjectForm' ).parsley( 'destroy' );
         this.$('.alert').animate({opacity:0});
-        this.removeResourceHtml();
+        this.clearResourceHtml();
     },
 
     gatherResources: function(resourceList){
         for (var i=1; i < this.resources+1; i++){
-            var item = new Resource({
-                    name        : this.$("#resourceName-"+i).val(),
-                    link        : this.$("#resourceLink-"+i).val(),
-                    description : this.$("#resourceDesc-"+i).val()
-                });
-            resourceList.push(item);
+            if ($(".resource-"+i)[0]){
+                var item = new Resource({
+                        name        : this.$("#resourceName-"+i).val(),
+                        link        : this.$("#resourceLink-"+i).val(),
+                        description : this.$("#resourceDesc-"+i).val()
+                    });
+                resourceList.push(item);
+            }
         }
     },
 

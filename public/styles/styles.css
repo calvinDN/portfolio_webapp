@@ -64,9 +64,6 @@ footer .container p {
   cursor: pointer;
 }
 
-
-
-
 /* PARSLEY.JS STYLE
 -------------------------------------------------- */
 
@@ -88,9 +85,6 @@ ul.parsley-error-list {
 ul.parsley-error-list li {
     line-height: 11px;
 }
-
-
-
 
 /* REPLACED DARKSTRAP NAVBAR-INVERSE WITH BOOTSTRAPS NAVBAR-INVERSE
 -------------------------------------------------- */

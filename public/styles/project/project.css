@@ -16,3 +16,15 @@
 .list-project ul li h5 {
     margin-top: 0px;
 }
+
+.list-project .project-resources {
+    margin-top: 10px;
+}
+
+.list-project .project-resources .subtitle {
+    margin-left: -20px;
+}
+
+.list-project .project-resources .resc-desc {
+    margin-left: 15px;
+}

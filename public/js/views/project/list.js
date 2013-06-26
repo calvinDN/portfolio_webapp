@@ -38,8 +38,8 @@ module.exports = Backbone.View.extend({
         this.stopListening();
 
         _.each(this.childViews, function(childView){
-            if (childView.close)
-                childView.close();
+            if (childView.remove)
+                childView.remove();
         });
 
         return this;
