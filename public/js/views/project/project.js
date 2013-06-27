@@ -16,15 +16,22 @@ module.exports = Backbone.View.extend({
 
     render: function() {
         this.$el.html(_.template(ProjectTemplate, this.model.toJSON()));
+        this.renderCompleted(this.model.get("completed"));
         this.renderResources(this.model);
         return this;
     },
 
+    // MUSTDO: More subtle colours
+    renderCompleted: function(completed) {
+        if (!completed) {
+            this.$(".completed").text("not completed");
+            this.$(".completed").css("color", "red");
+        }
+    },
+
     renderResources: function(model) {
         var resourceList = model.get("resources");
-        // MUSTDO: make this into a template, append to it
         for (var i=0; i<resourceList.length; i++){
-            //this.$(".project-resources").prepend("<li>"+resourceList[i].name+"</li>"+"<li>"+resourceList[i].description+"</li>"+"<li>"+resourceList[i].link+"</li>");
             var resourceItemView = (new ResourceView({
                 model : resourceList[i]
             })).render().el;
@@ -33,7 +40,7 @@ module.exports = Backbone.View.extend({
         }
 
         if (resourceList.length < 1)
-            this.$(".project-resources").append("<br>None.");
+            this.$(".subtitle").remove();
     },
 
     remove: function() {
