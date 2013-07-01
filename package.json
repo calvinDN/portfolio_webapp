@@ -12,7 +12,9 @@
         "nodemailer"      : "0.4.x",
         "less-middleware" : "0.1.x",
         "underscore"      : "1.4.x",
-        "optimist"        : "0.4.x"
+        "optimist"        : "0.4.x",
+        "passport"        : "0.1.x",
+        "passport-local"  : "0.1.x"
     },
 
     "devDependencies" : {

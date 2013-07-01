@@ -6,6 +6,7 @@ var fs       = require('fs'),
     less     = require('less-middleware'),
 	clc      = require('cli-color'),
 	_        = require('underscore'),
+    passport = require('passport'),
     argv     = require('optimist')
         .boolean(['w','p']) //wipe, populate
         .argv
@@ -26,6 +27,8 @@ app.set('port', process.env.PORT || port);
 app.use(express.logger('dev'));  /* 'default', 'short', 'tiny', 'dev' */
 app.use(express.bodyParser());
 app.use(express.limit('1mb'));  // limit size of uploads to lessen the impact of DoS attempts
+app.use(passport.initialize());
+app.use(passport.session());
 
 // serve up CSS compiled from LESS
 var lessOptions =
@@ -43,8 +46,10 @@ app.use(express.static(path.join(__dirname, '/public')));
 mongoose.connect(dbPath, function onMongooseError(err){
     if (err)
 		throw err;
-    else
+    else {
 		console.log(success("Success! ") + 'Connected to Mongo DB through Mongoose.');
+
+    }
 
     if (argv.c)
         console.log(warn("-w Wiping database."));
