@@ -10,16 +10,11 @@ module.exports = Backbone.View.extend({
     },
 
     render: function () {
-        this.$el.html(_.template(LoginTemplate));
+        this.$el.html(_.template(LoginTemplate, {message: false}));
         return this;
     },
 
     events: {
-        "click .login" : "login"
-    },
-
-    login: function () {
-        console.log('ready to login');
     },
 
     remove: function() {

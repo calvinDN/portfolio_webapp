@@ -7,6 +7,8 @@ var fs       = require('fs'),
 	clc      = require('cli-color'),
 	_        = require('underscore'),
     passport = require('passport'),
+    path     = require('path'),
+    User     = require(path.resolve('models/User')),
     argv     = require('optimist')
         .boolean(['w','p']) //wipe, populate
         .argv
@@ -25,8 +27,12 @@ var app = express();
 
 app.set('port', process.env.PORT || port);
 app.use(express.logger('dev'));  /* 'default', 'short', 'tiny', 'dev' */
+app.use(express.cookieParser());
 app.use(express.bodyParser());
+app.use(express.methodOverride());
 app.use(express.limit('1mb'));  // limit size of uploads to lessen the impact of DoS attempts
+// Initialize Passport!  Also use passport.session() middleware, to support
+// persistent login sessions (recommended).
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -49,6 +55,27 @@ mongoose.connect(dbPath, function onMongooseError(err){
     else {
 		console.log(success("Success! ") + 'Connected to Mongo DB through Mongoose.');
 
+        User.findOne({ username : "calvin@calvindn.com" }, function(err, user) {
+            if (err)
+                return console.log(err);
+
+            if (user !== null)
+                return console.log(user);
+            else {
+                console.log("Adding test admin.");
+                user = new User();
+                user.username = "calvin@calvindn.com";
+                user.password = "secret";
+
+                user.save(function(err) {
+                    if(err) {
+                        console.log(err);
+                    } else {
+                        console.log('user: ' + user.username + " saved.");
+                    }
+                });
+            }
+        });
     }
 
     if (argv.c)
@@ -63,8 +90,16 @@ fs.readdirSync('models').forEach(function(file) {
     require('./models/' + filename);
 });
 
+// authentication for all API routes
+app.all("/admin/*", require('./routes/authentication').ensureAuthentication);
+
 // read the Routes Files
-var	project  = require('./routes/projects')(app);
+var project = require('./routes/projects')(app);
+var user    = require('./routes/users')(app);
+var auth    = require('./routes/authentication')(app);
+var	admin   = require('./routes/admin/projects')(app, "/admin");
+
+
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log(success("Success! ") + "Server listening on port " + info(app.get('port')) + '.');
