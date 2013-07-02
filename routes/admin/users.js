@@ -2,7 +2,8 @@ var path = require('path'),
     User = require(path.resolve('models/User'));
 
 module.exports = function(app, rootUrl) {
-    app.get('/users/:id', function(req,res) {
+
+    app.get(rootUrl + '/users/:id', function(req,res) {
         var id = req.params.id;
 
         if (id == 'me')
@@ -12,7 +13,11 @@ module.exports = function(app, rootUrl) {
             if (err)
                 return res.send(500);
 
-            res.send(user);
+            if (user === null)
+                return res.send(404);
+
+            res.send(200, user);
         });
     });
+
 };

@@ -7,6 +7,7 @@ define(function(require, exports, module) {
         ListProjectView = require('views/project/list'),
         HeaderView      = require('views/header'),
         ErrorView       = require('views/error'),
+        User            = require('models/User'),
         Project         = require('models/Project'),
         Projects        = require('models/ProjectCollection');
 
@@ -28,21 +29,21 @@ module.exports = new (Backbone.Router.extend({
     notFound: function(trash) {
         this.registerView(new ErrorView({
             el: $("#content")
-        }));
+        }), false);
         this.headerView.selectMenuItem();
     },
 
     home: function(id) {
         this.registerView(new HomeView({
             el: $("#content")
-        }));
+        }), false);
         this.headerView.selectMenuItem('home-menu');
     },
 
     login: function() {
         this.registerView(new LoginView({
             el: $("#content")
-        }));
+        }), false);
         this.headerView.selectMenuItem(); // clear active class from nav
     },
 
@@ -53,8 +54,8 @@ module.exports = new (Backbone.Router.extend({
         this.registerView(new AddProjectView({
             collection: projects,
             el: $("#content")
-        }));
-        projects.fetch();
+        }), true);
+        projects.fetch(); // COULDDO: do I need this?
         this.headerView.selectMenuItem('add-menu');
     },
 
@@ -65,17 +66,34 @@ module.exports = new (Backbone.Router.extend({
         this.registerView(new ListProjectView({
             collection: projects,
             el: $("#content")
-        }));
+        }), false);
         projects.fetch();
         this.headerView.selectMenuItem('browse-menu');
     },
 
-    registerView: function(view) {
-        if (this.currentView)
-            this.currentView.remove();
+    adminCheck: function(view) {
+        var self = this;
+        User.getCurrent(function() {
+            if (User.current === null) {
+                self.notFound();
+            }
+            else {
+                self.registerView(view, false);
+            }
+        });
+    },
 
-        this.currentView = view;
-        this.currentView.render();
+    registerView: function(view, adminOnly) {
+        if (adminOnly){
+            this.adminCheck(view);
+        }
+        else {
+            if (this.currentView)
+                this.currentView.remove();
+
+            this.currentView = view;
+            this.currentView.render();
+        }
     }
 
 }));

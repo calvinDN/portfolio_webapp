@@ -4,7 +4,7 @@ define(function(require, exports, module) {
 
     var User = module.exports = Backbone.Model.extend({
 
-        urlRoot: "/users",
+        urlRoot: "/admin/users",
         initialize: function() {
         }
     },
@@ -14,17 +14,22 @@ define(function(require, exports, module) {
          * Fetches the currently logged in user.
          * @return {User} the currently authenticated user
          */
-        getCurrent : function(onDone) {
-            $.get(User.prototype.urlRoot + '/me')
-            .done(function(data) {
-                User.current = new User();
-                User.current.set(data);
-                if (onDone)
-                    onDone(null);
-            })
-            .fail(function(res, status, error) {
-                if (onDone)
-                    onDone(res.responseText || error || status);
+        getCurrent : function(callback) {
+            var user = new User();
+            user.url = User.prototype.urlRoot + "/me";
+            user.fetch({
+                success: function(response, user) {
+                    console.log("Current User = " + user.username);
+                    User.current = new User();
+                    User.current.set(user);
+                    if (callback)
+                        callback(null);
+                },
+                error: function(response) {
+                    console.log("Current User = null");
+                    if (callback)
+                        callback(response);
+                }
             });
         },
 

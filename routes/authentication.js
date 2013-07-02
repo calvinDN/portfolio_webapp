@@ -43,11 +43,10 @@ passport.use(new LocalStrategy(
 module.exports = function(app) {
     app.post('/login',
     passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/#/login',
-                                   failureFlash: false })
+                                   failureRedirect: '/#/login' })
     );
 
-    app.post('/logout', function(req, res){
+    app.get('/logout', function(req, res){
         req.logout();
         res.redirect('/');
     });
@@ -59,22 +58,9 @@ module.exports = function(app) {
 //   the request will proceed.  Otherwise, the user will be redirected to the
 //   login page.
 module.exports.ensureAuthentication = function(req, res, next) {
-    // first check for session cookie
     if (req.isAuthenticated())
         return next();
 
-    // check for authorization header
-    else if (req.headers.authorization === "undefined" && req.headers['x-requested-with'] == 'XMLHttpRequest') {
-        res.send(401, "Unauthorized");
-        // specifically don't send the WWW-Authorization header in an attempt to prevent the browser from popping up native login dialog
-        // this is only when it's an AJAX request (as indicated by the x-requested-with header)
-        // without this header, it's likely the browser hitting up the URL directly so allow standard behaviour which popups authentcation dialog
-    }
-
-    // COULDDO: check against basic Auth header (when username/password authentication is supported)
-/*    else if
-         express.basicAuth(User.authenticate)(req, res, next);
-*/
-    else
-        res.send(401, "Unauthorized");
+    res.redirect('/#/login');
 };
+

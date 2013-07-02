@@ -30,6 +30,7 @@ app.use(express.logger('dev'));  /* 'default', 'short', 'tiny', 'dev' */
 app.use(express.cookieParser());
 app.use(express.bodyParser());
 app.use(express.methodOverride());
+app.use(express.session({ secret: 'figure it out' }));
 app.use(express.limit('1mb'));  // limit size of uploads to lessen the impact of DoS attempts
 // Initialize Passport!  Also use passport.session() middleware, to support
 // persistent login sessions (recommended).
@@ -95,11 +96,9 @@ app.all("/admin/*", require('./routes/authentication').ensureAuthentication);
 
 // read the Routes Files
 var project = require('./routes/projects')(app);
-var user    = require('./routes/users')(app);
 var auth    = require('./routes/authentication')(app);
 var	admin   = require('./routes/admin/projects')(app, "/admin");
-
-
+var user    = require('./routes/admin/users')(app, "/admin");
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log(success("Success! ") + "Server listening on port " + info(app.get('port')) + '.');

@@ -9,9 +9,8 @@ define(function(require, exports, module) {
         AdminHeader = require('views/admin/header');
 
     $(document).ready(function() {
-
         User.getCurrent(function() {
-            if (User.current == null) {
+            if (User.current === null) {
                 this.headerView = new Header();
                 $('.header').html(this.headerView.el);
             }

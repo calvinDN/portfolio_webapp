@@ -3,7 +3,7 @@ define(function(require, exports, module) {
         _              = require('underscore'),
         Bootstrap      = require('bootstrap'),
         Backbone       = require('Backbone'),
-        HeaderTemplate = require('text!templates/HeaderView.html');
+        HeaderTemplate = require('text!templates/admin/HeaderView.html');
 
 module.exports = Backbone.View.extend({
 
