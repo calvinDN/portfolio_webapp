@@ -62,7 +62,10 @@ module.exports = Backbone.View.extend({
         var resourceList = [];
         this.gatherResources(resourceList);
 
-        new Project({
+        // MUSTDO: fix this, first add doesnt work
+        var project = new Project();
+        project.url = "/admin/projects/";
+        project.set({
             name        : this.$("#name").val(),
             description : this.$("#description").val(),
             github      : "https://github.com/calvinDN/"+this.$("#github").val(),
@@ -71,6 +74,8 @@ module.exports = Backbone.View.extend({
         }).save(null, {
             wait: true,
             success: function(response, model) {
+                console.log(response);
+
                 self.toggleAlert(0);
 
                 setTimeout(function() {
@@ -79,6 +84,7 @@ module.exports = Backbone.View.extend({
                 self.updateAlert('alert-success');
             },
             error: function(response) {
+                console.log(response);
                 self.toggleAlert(0);
                 self.updateAlert('alert-error');
             }

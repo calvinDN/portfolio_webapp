@@ -3,21 +3,29 @@ CalvinDN.com
 TODO
 ==========
     - use mixins to promote seperation of concerns
-	- look into passport or some sort of authentification (request)
 	- email from contact form, maybe
-    - sort projects buy last github commit or something..
+    - sort projects by last github commit or something..
     - move contact modal to it's own view
     - unit testing
     - investigate how to reduce model count
     - paginator
-    - guthub calls
     - edit, remove projects
-    - can I make name the key?
+    - implement search for projects
+    - cron job for gituhb commit updates
+    - add non-site
 
 IDEAS
 ==========
 	- admin login slides in footer or something...
+    - add roles to user login and allow users to either use a premade account to login and
+    edit some sort of list or allow them to sign up and log in.
+    - backup project database, may need to use 2 seperate db's (for previous idea)
+    - use github api wrapper
+        - https://npmjs.org/package/github
+    - make rss feed for new projects
+        - https://npmjs.org/package/rss
+    - add cookies for 'remember me' functionality
 
     validation
     - server side validation
-    - implement search for projects
+    - admin login validation

@@ -1,6 +1,6 @@
 var path     = require('path'),
     mongoose = require('mongoose'),
-    bcrypt        = require('bcrypt'),
+    bcrypt   = require('bcrypt'),
     SALT_WORK_FACTOR = 10;
 
 schema = new mongoose.Schema({
