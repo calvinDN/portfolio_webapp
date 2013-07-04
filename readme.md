@@ -13,6 +13,7 @@ TODO
     - implement search for projects
     - cron job for gituhb commit updates
     - add non-site
+    - favicon, png transparent background, simple "C".
 
 IDEAS
 ==========

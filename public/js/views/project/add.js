@@ -48,7 +48,8 @@ module.exports = Backbone.View.extend({
         $("."+e.target.classList[4]).remove();
     },
 
-    validateForm: function () {
+    validateForm: function (e) {
+        e.preventDefault();
         this.$( '#addProjectForm' ).parsley( 'destroy' );
         if (this.$('#addProjectForm').parsley( 'validate' ))
             return this.saveProject();
@@ -72,7 +73,6 @@ module.exports = Backbone.View.extend({
             completed   : this.$('#completed').is(":checked"),
             resources   : resourceList
         }).save(null, {
-            wait: true,
             success: function(response, model) {
                 console.log(response);
 
