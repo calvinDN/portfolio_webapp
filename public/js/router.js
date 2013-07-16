@@ -67,7 +67,7 @@ module.exports = new (Backbone.Router.extend({
         this.registerView(new EditProject({
             collection: projects,
             el: $("#content")
-        }), true);
+        }), false);
         projects.fetch();
     },
 
