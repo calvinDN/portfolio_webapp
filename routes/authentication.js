@@ -41,6 +41,7 @@ passport.use(new LocalStrategy(
 ));
 
 module.exports = function(app) {
+    // maybe I can call res.send here and send err msg.
     app.post('/login',
     passport.authenticate('local', { successRedirect: '/',
                                    failureRedirect: '/#/login' })

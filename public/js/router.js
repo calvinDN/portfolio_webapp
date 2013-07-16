@@ -1,47 +1,49 @@
 define(function(require, exports, module) {
-    var $               = require('jquery'),
-        Backbone        = require('Backbone'),
-        HomeView        = require('views/home'),
-        LoginView       = require('views/login'),
-        AddProjectView  = require('views/project/add'),
-        ListProjectView = require('views/project/list'),
-        HeaderView      = require('views/header'),
-        ErrorView       = require('views/error'),
-        User            = require('models/User'),
-        Project         = require('models/Project'),
-        Projects        = require('models/ProjectCollection');
+    var $           = require('jquery'),
+        Backbone    = require('Backbone'),
+        Home        = require('views/home'),
+        Login       = require('views/login'),
+        EditProject = require('views/admin/project/edit'),
+        AddProject  = require('views/project/add'),
+        ListProject = require('views/project/list'),
+        Header      = require('views/header'),
+        Error       = require('views/error'),
+        User        = require('models/User'),
+        Project     = require('models/Project'),
+        Projects    = require('models/ProjectCollection');
 
 module.exports = new (Backbone.Router.extend({
     currentView: null,
     routes: {
-        ""             : "home",
-        "login"        : "login",
-        "projects"     : "listProjects",
-        "projects/add" : "addProject",
-        ":whatever"    : "notFound"
+        ""              : "home",
+        "login"         : "login",
+        "projects"      : "listProjects",
+        "projects/add"  : "addProject",
+        "projects/edit" : "editProject",
+        ":whatever"     : "notFound"
     },
 
     initialize: function() {
-        this.headerView = new HeaderView();
+        this.headerView = new Header();
         $('.header').html(this.headerView.el);
     },
 
     notFound: function(trash) {
-        this.registerView(new ErrorView({
+        this.registerView(new Error({
             el: $("#content")
         }), false);
         this.headerView.selectMenuItem();
     },
 
     home: function(id) {
-        this.registerView(new HomeView({
+        this.registerView(new Home({
             el: $("#content")
         }), false);
         this.headerView.selectMenuItem('home-menu');
     },
 
     login: function() {
-        this.registerView(new LoginView({
+        this.registerView(new Login({
             el: $("#content")
         }), false);
         this.headerView.selectMenuItem(); // clear active class from nav
@@ -51,19 +53,29 @@ module.exports = new (Backbone.Router.extend({
         var projects = new Projects();
         projects.url = "/projects";
 
-        this.registerView(new AddProjectView({
+        this.registerView(new AddProject({
             collection: projects,
             el: $("#content")
         }), true);
         projects.fetch(); // COULDDO: do I need this?
-        this.headerView.selectMenuItem('add-menu');
+    },
+
+    editProject: function() {
+        var projects = new Projects();
+        projects.url = "/projects";
+
+        this.registerView(new EditProject({
+            collection: projects,
+            el: $("#content")
+        }), true);
+        projects.fetch();
     },
 
     listProjects: function() {
         var projects = new Projects();
         projects.url = "/projects";
 
-        this.registerView(new ListProjectView({
+        this.registerView(new ListProject({
             collection: projects,
             el: $("#content")
         }), false);

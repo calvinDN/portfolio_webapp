@@ -14,6 +14,9 @@ TODO
     - cron job for gituhb commit updates
     - add non-site
     - favicon, png transparent background, simple "C".
+    - In order to protect certain views from unauthorized rendering, check if authorized within the render function.
+    - implement some reasonable server-side rendering
+    - gzip where it makes sense
 
 IDEAS
 ==========

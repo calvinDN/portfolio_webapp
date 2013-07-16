@@ -16,6 +16,8 @@ module.exports = Backbone.View.extend({
     },
 
     render: function () {
+        // check if authorized here, otherwise, render 404 template.
+        // could probably remove the admin check from router
         this.$el.html(_.template(ProjectTemplate));
         return this;
     },
