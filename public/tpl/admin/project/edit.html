@@ -2,8 +2,20 @@
 <ul>
     <li><h4><a href="<%=github %>" target="_blank"><%=name %></a></h4></li>
     <div class="project-content">
-        <li><p><%=description %></p></li>
-        <li>This project has been marked as <span class="completed">completed</span>.</li>
+        <li>
+            <div class="control-group">
+                <label class="control-label" for="description">Description: </label>
+                <div class="controls">
+                    <textarea id="description" class="edit-description" rows="5"><%=description %></textarea>
+                </div>
+            </div>
+        </li>
+        <li>This project has been marked as
+            <select>
+                <option>completed.</option>
+                <option>not completed.</option>
+            </select>
+        </li>
         <div class="project-resources">
             <strong class="subtitle">Resources Used:</strong>
         </div>
