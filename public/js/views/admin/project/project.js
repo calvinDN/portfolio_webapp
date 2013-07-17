@@ -3,7 +3,7 @@ define(function(require, exports, module) {
         _               = require('underscore'),
         Backbone        = require('Backbone'),
         ResourceView    = require('views/project/resource');
-        ProjectTemplate = require('text!templates/admin/project/project.html'),
+        AdminProject = require('text!templates/admin/project/project.html'),
         Project         = require('models/Project');
 
 // this.model is one project from the project collection
@@ -15,7 +15,7 @@ module.exports = Backbone.View.extend({
     },
 
     render: function() {
-        this.$el.html(_.template(ProjectTemplate, this.model.toJSON()));
+        this.$el.html(_.template(AdminProject, this.model.toJSON()));
         this.renderCompleted(this.model.get("completed"));
         this.renderResources(this.model);
         return this;
