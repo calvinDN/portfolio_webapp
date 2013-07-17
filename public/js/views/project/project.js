@@ -21,7 +21,6 @@ module.exports = Backbone.View.extend({
         return this;
     },
 
-    // MUSTDO: More subtle colours
     renderCompleted: function(completed) {
         if (!completed) {
             this.$(".completed").text("not completed");

@@ -1,10 +1,10 @@
 define(function(require, exports, module) {
-    var $               = require('jquery'),
-        _               = require('underscore'),
-        Backbone        = require('Backbone'),
-        ResourceView    = require('views/project/resource');
+    var $            = require('jquery'),
+        _            = require('underscore'),
+        Backbone     = require('Backbone'),
+        ResourceView = require('views/project/resource');
         AdminProject = require('text!templates/admin/project/project.html'),
-        Project         = require('models/Project');
+        Project      = require('models/Project');
 
 // this.model is one project from the project collection
 module.exports = Backbone.View.extend({
@@ -21,7 +21,6 @@ module.exports = Backbone.View.extend({
         return this;
     },
 
-    // MUSTDO: More subtle colours
     renderCompleted: function(completed) {
         if (!completed) {
             this.$(".completed").text("not completed");
@@ -41,6 +40,24 @@ module.exports = Backbone.View.extend({
 
         if (resourceList.length < 1)
             this.$(".subtitle").remove();
+    },
+
+    events : {
+        "click #remove-btn" : "removeProject",
+        "click #reset-btn"  : "resetProject",
+        "click #save-btn"   : "editProject"
+    },
+
+    removeProject: function() {
+        console.log('remove');
+    },
+
+    resetProject: function() {
+        console.log('reset');
+    },
+
+    editProject: function() {
+        console.log('edit');
     },
 
     remove: function() {
