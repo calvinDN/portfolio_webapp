@@ -14,7 +14,7 @@ module.exports = Backbone.View.extend({
         // due to asynchronous nature
         // make sure the collection is rendered after the models have populated collection
         this.collection.on("reset", this.renderCollection, this);
-        this.collection.on("remove", this.onRemove, this);
+        this.listenTo(this.collection, 'remove', this.onRemove);
     },
 
     render: function () {
@@ -34,7 +34,7 @@ module.exports = Backbone.View.extend({
     },
 
     onRemove: function() {
-        console.log('here');
+        $('ul li.list-project:empty').remove();
     },
 
     remove: function () {

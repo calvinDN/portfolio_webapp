@@ -12,6 +12,7 @@ module.exports = Backbone.View.extend({
     className: "list-project well",
     initialize: function() {
         this.childViews = [];
+        this.listenTo(this.model, 'destroy', this.remove);
     },
 
     render: function() {
@@ -49,9 +50,8 @@ module.exports = Backbone.View.extend({
     },
 
     removeProject: function() {
-        console.log(this.model.url);
         this.model.url = "/admin/projects/" + this.model.get("_id");
-        this.model.destroy({ wait: true,
+        this.model.destroy({
             success: function(response) {
                 console.log('success');
             },
