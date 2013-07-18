@@ -49,7 +49,16 @@ module.exports = Backbone.View.extend({
     },
 
     removeProject: function() {
-        console.log('remove');
+        console.log(this.model.url);
+        this.model.url = "/admin/projects/" + this.model.get("_id");
+        this.model.destroy({ wait: true,
+            success: function(response) {
+                console.log('success');
+            },
+            error: function(response) {
+                console.log('error');
+            }
+        });
     },
 
     resetProject: function() {

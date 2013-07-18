@@ -65,7 +65,6 @@ module.exports = Backbone.View.extend({
         var resourceList = [];
         this.gatherResources(resourceList);
 
-        // MUSTDO: fix this, first add doesnt work
         var project = new Project();
         project.url = "/admin/projects/";
         project.set({

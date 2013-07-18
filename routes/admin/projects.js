@@ -6,7 +6,7 @@ module.exports = function(app, rootUrl) {
 
     app.post(rootUrl + "/projects", function(req, res) {
         console.log(req.body);
-        // Error on save if we submit an empty array
+        // Error on save if an empty array is submitted
         if (!req.body.resources)
             delete req.body.resources;
 
@@ -23,7 +23,7 @@ module.exports = function(app, rootUrl) {
             if (err)
                 return res.send(500);
 
-            return res.send(200);
+            return res.send({success: true});
         });
     });
 
