@@ -34,6 +34,7 @@ module.exports = Backbone.View.extend({
     },
 
     onRemove: function() {
+        // SHOULDDO: I'm worried this may not always be called after destroy event from project.js view
         $('ul li.list-project:empty').remove();
     },
 

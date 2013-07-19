@@ -14,6 +14,12 @@ module.exports = Backbone.View.extend({
         return this;
     },
 
+    reset: function() {
+        console.log(this.model);
+        this.$("#name").val(this.model.name);
+        this.$("#description").val(this.model.description);
+    },
+
     remove: function() {
         this.undelegateEvents();
         this.$el.empty();

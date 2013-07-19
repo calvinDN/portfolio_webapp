@@ -3,7 +3,7 @@ define(function(require, exports, module) {
         _            = require('underscore'),
         Backbone     = require('Backbone'),
         ResourceView = require('views/admin/project/resource');
-        AdminProject = require('text!templates/admin/project/edit.html'),
+        AdminProject = require('text!templates/admin/project/project.html'),
         Project      = require('models/Project');
 
 // this.model is one project from the project collection
@@ -12,6 +12,7 @@ module.exports = Backbone.View.extend({
     className: "list-project well",
     initialize: function() {
         this.childViews = [];
+        this.resourceViews = [];
         this.listenTo(this.model, 'destroy', this.remove);
     },
 
@@ -31,10 +32,11 @@ module.exports = Backbone.View.extend({
 
     renderResources: function(model) {
         var resourceList = model.get("resources");
-        for (var i=0; i<resourceList.length; i++){
-            var resourceItemView = (new ResourceView({
+        for (var i=0; i<resourceList.length; i++) {
+            this.resourceViews[i] = (new ResourceView({
                 model : resourceList[i]
-            })).render().el;
+            }));
+            var resourceItemView = this.resourceViews[i].render().el;
             $(resourceItemView).appendTo(this.$(".project-resources"));
             this.childViews.push(resourceItemView);
         }
@@ -63,6 +65,15 @@ module.exports = Backbone.View.extend({
 
     resetProject: function() {
         console.log('reset');
+        this.$("#description").val(this.model.get("description"));
+        this.$("select").val(this.model.get("completed"));
+        console.log(this.model.get("resources").length);
+        _.each(this.resourceViews, function(resourceView) {
+            if (resourceView.reset);
+                resourceView.reset();
+            //console.log(resourceView);
+        });
+
     },
 
     editProject: function() {
