@@ -56,7 +56,7 @@ mongoose.connect(dbPath, function onMongooseError(err){
     else {
 		console.log(success("Success! ") + 'Connected to Mongo DB through Mongoose.');
 
-        User.findOne({ username : "calvin@calvindn.com" }, function(err, user) {
+        User.findOne({ username : "admin" }, function(err, user) {
             if (err)
                 return console.log(err);
 
@@ -65,8 +65,8 @@ mongoose.connect(dbPath, function onMongooseError(err){
             else {
                 console.log("Adding test admin.");
                 user = new User();
-                user.username = "calvin@calvindn.com";
-                user.password = "secret";
+                user.username = "admin";
+                user.password = "password";
 
                 user.save(function(err) {
                     if(err) {

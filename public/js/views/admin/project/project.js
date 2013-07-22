@@ -64,20 +64,32 @@ module.exports = Backbone.View.extend({
     },
 
     resetProject: function() {
-        console.log('reset');
         this.$("#description").val(this.model.get("description"));
         this.$("select").val(this.model.get("completed"));
-        console.log(this.model.get("resources").length);
         _.each(this.resourceViews, function(resourceView) {
             if (resourceView.reset);
                 resourceView.reset();
-            //console.log(resourceView);
         });
-
     },
 
     editProject: function() {
-        console.log('edit');
+        var updates = {
+            description : this.$("#description").val(),
+            completed   : this.$("selected").children(':selected').attr('value'),
+            resources   : this.getResources()
+        };
+
+        this.model.url = "/admin/projects/"+this.model.get("_id");
+        this.model.save(updates, {
+            success : function(response) {
+            },
+            error : function(response) {
+            }
+        });
+    },
+
+    getResources: function() {
+        // get subview resources
     },
 
     remove: function() {

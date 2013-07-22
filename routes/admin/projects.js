@@ -22,9 +22,19 @@ module.exports = function(app, rootUrl) {
         Project.findByIdAndRemove(req.params.id, function(err, doc) {
             if (err)
                 return res.send(500);
-
-            return res.send({success: true});
         });
+        return res.send({ success: true });
+    });
+
+    // COULDDO: More efficient to make patch request?
+    app.put(rootUrl + '/projects/:id', function(req,res) {
+        delete req.body._id; // otherwise, update rejects the change
+
+        Project.findByIdAndUpdate(req.params.id, req.body, function(err, doc) {
+            if (err)
+                return res.send(500);
+        });
+        return res.send({ success : true });
     });
 
 };

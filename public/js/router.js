@@ -58,6 +58,7 @@ module.exports = new (Backbone.Router.extend({
             el: $("#content")
         }), true);
         projects.fetch(); // COULDDO: do I need this?
+        this.headerView.selectMenuItem(); // clear active class from nav
     },
 
     editProject: function() {
@@ -69,6 +70,7 @@ module.exports = new (Backbone.Router.extend({
             el: $("#content")
         }), false);
         projects.fetch();
+        this.headerView.selectMenuItem(); // clear active class from nav
     },
 
     listProjects: function() {
