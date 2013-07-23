@@ -46,9 +46,19 @@ module.exports = Backbone.View.extend({
     },
 
     events : {
-        "click #remove-btn" : "removeProject",
-        "click #reset-btn"  : "resetProject",
-        "click #save-btn"   : "editProject"
+        // admin remove
+        "click #remove-btn"     : "removeConfirmModal",
+        "click #remove-confirm" : "removeProject",
+        // admin reset
+        "click #reset-btn"      : "resetConfirmModal",
+        "click #reset-confirm"  : "resetProject",
+        // admin edit save
+        "click #save-btn"       : "editConfirmModal",
+        "click #edit-confirm"   : "editProject"
+    },
+
+    removeConfirmModal: function() {
+        this.$('#remove-modal').modal({});
     },
 
     removeProject: function() {
@@ -63,6 +73,10 @@ module.exports = Backbone.View.extend({
         });
     },
 
+    resetConfirmModal: function() {
+        this.$('#reset-modal').modal({});
+    },
+
     resetProject: function() {
         this.$("#description").val(this.model.get("description"));
         this.$("select").val(this.model.get("completed"));
@@ -70,6 +84,10 @@ module.exports = Backbone.View.extend({
             if (resourceView.reset);
                 resourceView.reset();
         });
+    },
+
+    editConfirmModal: function() {
+        this.$('#edit-modal').modal({});
     },
 
     editProject: function() {

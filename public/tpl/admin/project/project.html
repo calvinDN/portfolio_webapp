@@ -31,3 +31,48 @@
         <button id="remove-btn" class="btn btn-small btn-danger pull-right">Remove</button>
     </div>
 </ul>
+
+<div id="remove-modal" class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Delete Project?</h3>
+    </div>
+    <div class="modal-body">
+        Click <strong>Delete Project</strong> if you would like to delete project: <strong><%=name %></strong>.
+    </div>
+    <div class="modal-footer">
+            <button id="remove-confirm" data-dismiss="modal" class="btn btn-danger">Delete Project</button>
+            <button class="btn" data-dismiss="modal">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<div id="reset-modal" class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Reset Project Changes?</h3>
+    </div>
+    <div class="modal-body">
+        Click <strong>Reset Project</strong> if you would like to reset the changes you have made to project: <strong><%=name %></strong>.
+    </div>
+    <div class="modal-footer">
+            <button id="reset-confirm" data-dismiss="modal" class="btn btn-danger">Reset Project</button>
+            <button class="btn" data-dismiss="modal">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<div id="edit-modal" class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Edit Project Changes?</h3>
+    </div>
+    <div class="modal-body">
+        Click <strong>Save Project</strong> if you would like to save the changes you have made to project: <strong><%=name %></strong>.
+    </div>
+    <div class="modal-footer">
+            <button id="edit-confirm" data-dismiss="modal" class="btn btn-danger">Save Project</button>
+            <button class="btn" data-dismiss="modal">Cancel</button>
+        </div>
+    </div>
+</div>

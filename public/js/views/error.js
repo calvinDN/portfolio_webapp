@@ -2,7 +2,7 @@ define(function(require, exports, module) {
 	var $              = require('jquery'),
         _              = require('underscore'),
         Backbone       = require('Backbone'),
-        ErrorTemplate   = require('text!templates/error.html');
+        ErrorTemplate  = require('text!templates/error.html');
 
 module.exports = Backbone.View.extend({
 

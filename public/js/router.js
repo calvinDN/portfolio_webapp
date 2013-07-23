@@ -68,7 +68,7 @@ module.exports = new (Backbone.Router.extend({
         this.registerView(new EditProject({
             collection: projects,
             el: $("#content")
-        }), false);
+        }), true);
         projects.fetch();
         this.headerView.selectMenuItem(); // clear active class from nav
     },
