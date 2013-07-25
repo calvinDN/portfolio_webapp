@@ -107,7 +107,13 @@ module.exports = Backbone.View.extend({
     },
 
     getResources: function() {
-        // get subview resources
+        var subDocuments = [];
+
+        _.each(this.resourceViews, function(resourceView) {
+            subDocuments.push(resourceView.get());
+        });
+
+        return subDocuments;
     },
 
     remove: function() {

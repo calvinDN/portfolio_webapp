@@ -15,9 +15,19 @@ module.exports = Backbone.View.extend({
     },
 
     reset: function() {
-        console.log(this.model);
         this.$("#name").val(this.model.name);
         this.$("#description").val(this.model.description);
+        this.$("#link").val(this.model.link);
+    },
+
+    get: function() {
+        var resource = {};
+
+        resource.name = this.$("#name").val();
+        resource.description = this.$("#description").val();
+        resource.link = this.$("#link").val();
+
+        return resource;
     },
 
     remove: function() {
