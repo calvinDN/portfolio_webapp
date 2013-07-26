@@ -1,18 +1,20 @@
-<div class="control-group">
-    <label class="control-label" for="name">Name: </label>
-    <div class="controls">
-        <input id="name" type="text" value="<%=name %>">
+<div class="form-horizontal">
+    <div class="control-group">
+        <label class="control-label" for="resource-name">Name: </label>
+        <div class="controls">
+            <div id="resource-name" type="text" contenteditable="true"><%=name %></div>
+        </div>
     </div>
-</div>
-<div class="control-group">
-    <label class="control-label" for="description">Description: </label>
-    <div class="controls">
-        <textarea id="description" class="edit-description" rows="3"><%=description %></textarea>
+    <div class="control-group">
+        <label class="control-label" for="resource-description">Description: </label>
+        <div class="controls">
+            <div id="resource-description" contenteditable="true"><%=description %></div>
+        </div>
     </div>
-</div>
-<div class="control-group">
-    <label class="control-label" for="link">Link: </label>
-    <div class="controls">
-        <input id="link" type="text" value="<%=link %>">
+    <div class="control-group">
+        <label class="control-label" for="resource-link">Link: </label>
+        <div class="controls">
+            <div id="resource-link" type="text" contenteditable="true"><%=link %></div>
+        </div>
     </div>
 </div>

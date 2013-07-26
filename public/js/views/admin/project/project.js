@@ -75,7 +75,7 @@ module.exports = Backbone.View.extend({
     },
 
     resetProject: function() {
-        this.$("#description").val(this.model.get("description"));
+        this.$("#project-description").text(this.model.get("description"));
         this.$("select").val(this.model.get("completed"));
         _.each(this.resourceViews, function(resourceView) {
             if (resourceView.reset);
@@ -89,7 +89,7 @@ module.exports = Backbone.View.extend({
 
     editProject: function() {
         var updates = {
-            description : this.$("#description").val(),
+            description : this.$("#project-description").text(),
             completed   : this.$("#completed-edit").children(':selected').attr('value'),
             resources   : this.getResources()
         };
