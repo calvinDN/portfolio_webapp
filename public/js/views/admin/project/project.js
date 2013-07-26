@@ -24,10 +24,7 @@ module.exports = Backbone.View.extend({
     },
 
     renderCompleted: function(completed) {
-        if (!completed) {
-            this.$(".completed").text("not completed");
-            this.$(".completed").css("color", "#FF8080");
-        }
+        this.$("#completed-edit").find("option[value='"+completed+"']").attr("selected", "selected");
     },
 
     renderResources: function(model) {
@@ -93,7 +90,7 @@ module.exports = Backbone.View.extend({
     editProject: function() {
         var updates = {
             description : this.$("#description").val(),
-            completed   : this.$("selected").children(':selected').attr('value'),
+            completed   : this.$("#completed-edit").children(':selected').attr('value'),
             resources   : this.getResources()
         };
 
