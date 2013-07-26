@@ -34,3 +34,38 @@
     font-style: italic;
     color: #66C285;
 }
+
+.list-project .dblclick-edit {
+    padding: 5px;
+    margin-right: 2px;
+    margin-left: 2px;
+}
+
+.editable-bg {
+    background-color: #161616;
+    border-radius: 6px;
+}
+
+img.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#load-success {
+    color: green;
+}
+
+#loading {
+    text-align:center;
+}
+
+select#completed-edit option {
+    background: #202020;
+    color:#fff;
+}
+
+select#completed-edit {
+    background: #202020;
+    font-style: italic;
+}

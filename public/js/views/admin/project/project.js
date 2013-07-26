@@ -51,7 +51,14 @@ module.exports = Backbone.View.extend({
         "click #reset-confirm"  : "resetProject",
         // admin edit save
         "click #save-btn"       : "editConfirmModal",
-        "click #edit-confirm"   : "editProject"
+        "click #edit-confirm"   : "editProject",
+
+        "dblclick .dblclick-edit" : "addContentEditable"
+    },
+
+    addContentEditable: function(e) {
+        $(e.currentTarget).attr("contentEditable",true);
+        $(e.currentTarget).addClass("editable-bg");
     },
 
     removeConfirmModal: function() {
@@ -75,6 +82,8 @@ module.exports = Backbone.View.extend({
     },
 
     resetProject: function() {
+        this.$("#project-name").text(this.model.get("name"));
+        this.$("#project-github").text(this.model.get("github"));
         this.$("#project-description").text(this.model.get("description"));
         this.$("select").val(this.model.get("completed"));
         _.each(this.resourceViews, function(resourceView) {
@@ -88,7 +97,11 @@ module.exports = Backbone.View.extend({
     },
 
     editProject: function() {
+        this.fetchAnimation();
+
         var updates = {
+            name        : this.$("#project-name").text(),
+            github      : this.$("#project-github").text(),
             description : this.$("#project-description").text(),
             completed   : this.$("#completed-edit").children(':selected').attr('value'),
             resources   : this.getResources()
@@ -100,6 +113,25 @@ module.exports = Backbone.View.extend({
             },
             error : function(response) {
             }
+        });
+    },
+
+    fetchAnimation: function() {
+        // why does this fuck up on second + call?
+        self = this;
+        this.$("#loading").ajaxStart(function(){
+            self.$("#loading").append($('<img class="center" />').attr('src', 'img/ajax-loader.gif'));
+        }).ajaxStop(function(){
+            setTimeout(function(){
+                self.$("#loading").empty();
+            },1000);
+            setTimeout(function(){
+                self.$("#loading").append("<i id=\"load-success\" class=\"icon-check icon-2x\"></i>");
+            },1001);
+            setTimeout(function(){
+                self.$("#loading").empty();
+                self.$("#edit-modal").modal('hide');   
+            },2000);
         });
     },
 

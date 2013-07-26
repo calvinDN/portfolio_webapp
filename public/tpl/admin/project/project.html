@@ -2,20 +2,28 @@
 <ul>
     <li>
         <h4>
-            <a href="<%=github %>" target="_blank"><%=name %></a>
+            <div id="project-name" class="dblclick-edit"><%=name %></div>
         </h4>
     </li>
     <div class="project-content">
         <li>
             <div class="control-group">
+                <label class="control-label" for="project-github">Github: </label>
+                <div class="controls">
+                    <div id="project-github" class="dblclick-edit"><%=github %></div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="control-group">
                 <label class="control-label" for="project-description">Description: </label>
                 <div class="controls">
-                    <div id="project-description" contenteditable="true"><%=description %></div>
+                    <div id="project-description" class="dblclick-edit"><%=description %></div>
                 </div>
             </div>
         </li>
         <li>This project has been marked as
-            <select id="completed-edit">
+            <select id="completed-edit" class="bump">
                 <option value="true">completed.</option>
                 <option value="false">not completed.</option>
             </select>
@@ -56,7 +64,7 @@
         Click <strong>Reset Project</strong> if you would like to reset the changes you have made to project: <strong><%=name %></strong>.
     </div>
     <div class="modal-footer">
-            <button id="reset-confirm" data-dismiss="modal" class="btn btn-danger">Reset Project</button>
+            <button id="reset-confirm" class="btn btn-danger" data-dismiss="modal">Reset Project</button>
             <button class="btn" data-dismiss="modal">Cancel</button>
         </div>
     </div>
@@ -69,9 +77,11 @@
     </div>
     <div class="modal-body">
         Click <strong>Save Project</strong> if you would like to save the changes you have made to project: <strong><%=name %></strong>.
+        <div id="loading">
+        </div>
     </div>
     <div class="modal-footer">
-            <button id="edit-confirm" data-dismiss="modal" class="btn btn-danger">Save Project</button>
+            <button id="edit-confirm" class="btn btn-danger">Save Project</button>
             <button class="btn" data-dismiss="modal">Cancel</button>
         </div>
     </div>
