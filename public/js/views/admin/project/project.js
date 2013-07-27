@@ -44,14 +44,14 @@ module.exports = Backbone.View.extend({
 
     events : {
         // admin remove
-        "click #remove-btn"     : "removeConfirmModal",
-        "click #remove-confirm" : "removeProject",
+        "click #remove-btn"       : "removeConfirmModal",
+        "click #remove-confirm"   : "removeProject",
         // admin reset
-        "click #reset-btn"      : "resetConfirmModal",
-        "click #reset-confirm"  : "resetProject",
+        "click #reset-btn"        : "resetConfirmModal",
+        "click #reset-confirm"    : "resetProject",
         // admin edit save
-        "click #save-btn"       : "editConfirmModal",
-        "click #edit-confirm"   : "editProject",
+        "click #save-btn"         : "editConfirmModal",
+        "click #edit-confirm"     : "editProject",
 
         "dblclick .dblclick-edit" : "addContentEditable"
     },
@@ -97,6 +97,7 @@ module.exports = Backbone.View.extend({
     },
 
     editProject: function() {
+        // probably replacing this...
         this.fetchAnimation();
 
         var updates = {
