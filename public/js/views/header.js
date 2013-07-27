@@ -3,17 +3,25 @@ define(function(require, exports, module) {
         _              = require('underscore'),
         Bootstrap      = require('bootstrap'),
         Backbone       = require('Backbone'),
+        ContactModal   = require('views/contact'),
         HeaderTemplate = require('text!templates/HeaderView.html');
 
 module.exports = Backbone.View.extend({
 
-    initialize: function () {
+    initialize: function() {
         this.render();
     },
 
-    render: function () {
+    render: function() {
         this.$el.html(_.template(HeaderTemplate));
+        this.renderContactModal();
         return this;
+    },
+
+    renderContactModal: function() {
+        // SHOULDDO: add this to child views
+        var contactView = new ContactModal({}).render().el;
+        $(contactView).appendTo(this.$("#contact-modal"));
     },
 
     events: {
@@ -22,7 +30,7 @@ module.exports = Backbone.View.extend({
         "click #style-toggle" : "toggleStyle"
     },
 
-    contactModal: function(){
+    contactModal: function() {
         // COULDDO: Fix position on small browser size
         this.$('#contact-modal').modal({}).css(
         {

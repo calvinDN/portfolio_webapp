@@ -1,8 +1,8 @@
 define(function(require, exports, module) {
-	var $             = require('jquery'),
-        _             = require('underscore'),
-        Backbone      = require('Backbone'),
-        ErrorTemplate = require('text!templates/error.html');
+	var $               = require('jquery'),
+        _               = require('underscore'),
+        Backbone        = require('Backbone'),
+        ContactTemplate = require('text!templates/contact-modal.html');
 
 module.exports = Backbone.View.extend({
 
@@ -10,7 +10,7 @@ module.exports = Backbone.View.extend({
     },
 
     render: function () {
-        this.$el.html(_.template(ErrorTemplate));
+        this.$el.html(_.template(ContactTemplate));
         return this;
     },
 
