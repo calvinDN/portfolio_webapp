@@ -1,44 +1,46 @@
 <!-- Appeneded to list-project -->
-<ul>
-    <li>
-        <h4>
-            <div id="project-name" class="dblclick-edit"><%=name %></div>
-        </h4>
-    </li>
-    <div class="project-content">
+<form id="editProjectForm">
+    <ul>
         <li>
-            <div class="control-group">
-                <label class="control-label" for="project-github">Github: </label>
-                <div class="controls">
-                    <div id="project-github" class="dblclick-edit"><%=github %></div>
+            <h4>
+                <div id="project-name" class="dblclick-edit"><%=name %></div>
+            </h4>
+        </li>
+        <div class="project-content">
+            <li>
+                <div class="control-group">
+                    <label class="control-label" for="project-github">Github: </label>
+                    <div class="controls">
+                        <div id="project-github" class="dblclick-edit" data-required="true" data-notblank="true"><%=github %></div>
+                    </div>
                 </div>
-            </div>
-        </li>
-        <li>
-            <div class="control-group">
-                <label class="control-label" for="project-description">Description: </label>
-                <div class="controls">
-                    <div id="project-description" class="dblclick-edit"><%=description %></div>
+            </li>
+            <li>
+                <div class="control-group">
+                    <label class="control-label" for="project-description">Description: </label>
+                    <div class="controls">
+                        <div id="project-description" class="dblclick-edit"><%=description %></div>
+                    </div>
                 </div>
+            </li>
+            <li>This project has been marked as
+                <select id="completed-edit" class="bump">
+                    <option value="true">completed.</option>
+                    <option value="false">not completed.</option>
+                </select>
+            </li>
+            <div class="project-resources">
+                <strong class="subtitle">Resources Used:</strong>
             </div>
-        </li>
-        <li>This project has been marked as
-            <select id="completed-edit" class="bump">
-                <option value="true">completed.</option>
-                <option value="false">not completed.</option>
-            </select>
-        </li>
-        <div class="project-resources">
-            <strong class="subtitle">Resources Used:</strong>
         </div>
-    </div>
-    <hr>
-    <div class="admin-buttons">
-        <button id="save-btn" class="btn btn-small btn-primary">Save</button>
-        <button id="reset-btn" class="btn btn-small btn-primary">Discard Chnages</button>
-        <button id="remove-btn" class="btn btn-small btn-danger pull-right">Remove</button>
-    </div>
-</ul>
+        <hr>
+        <div class="admin-buttons">
+            <button id="save-btn" class="btn btn-small btn-primary">Save</button>
+            <button id="reset-btn" class="btn btn-small btn-primary">Discard Chnages</button>
+            <button id="remove-btn" class="btn btn-small btn-danger pull-right">Remove</button>
+        </div>
+    </ul>
+</form>
 
 <div id="remove-modal" class="modal hide fade">
     <div class="modal-header">

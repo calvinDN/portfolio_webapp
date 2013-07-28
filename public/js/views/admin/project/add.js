@@ -3,7 +3,7 @@ define(function(require, exports, module) {
         _               = require('underscore'),
         Backbone        = require('Backbone'),
         Parsley         = require('parsley'),
-        ProjectTemplate = require('text!templates/project/AddView.html'),
+        ProjectTemplate = require('text!templates/admin/project/add.html'),
         newResource     = require('text!templates/project/newResource.html'),
         Resource        = require('models/Resource'),
         Project         = require('models/Project'),
@@ -52,8 +52,8 @@ module.exports = Backbone.View.extend({
 
     validateForm: function (e) {
         e.preventDefault();
-        this.$( '#addProjectForm' ).parsley( 'destroy' );
-        if (this.$('#addProjectForm').parsley( 'validate' ))
+        this.$('#addProjectForm').parsley('destroy');
+        if (this.$('#addProjectForm').parsley('validate'))
             return this.saveProject();
 
         this.toggleAlert(0);
@@ -75,8 +75,6 @@ module.exports = Backbone.View.extend({
             resources   : resourceList
         }).save(null, {
             success: function(response, model) {
-                console.log(response);
-
                 self.toggleAlert(0);
 
                 setTimeout(function() {
@@ -85,7 +83,6 @@ module.exports = Backbone.View.extend({
                 self.updateAlert('alert-success');
             },
             error: function(response) {
-                console.log(response);
                 self.toggleAlert(0);
                 self.updateAlert('alert-error');
             }

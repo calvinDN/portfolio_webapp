@@ -2,7 +2,8 @@ define(function(require, exports, module) {
     var $            = require('jquery'),
         _            = require('underscore'),
         Backbone     = require('Backbone'),
-        ResourceView = require('views/admin/project/resource');
+        Parsley      = require('parsley'),
+        ResourceView = require('views/admin/project/resource'),
         AdminProject = require('text!templates/admin/project/project.html'),
         Project      = require('models/Project');
 
@@ -20,6 +21,9 @@ module.exports = Backbone.View.extend({
         this.$el.html(_.template(AdminProject, this.model.toJSON()));
         this.renderCompleted(this.model.get("completed"));
         this.renderResources(this.model);
+        // SHOULDDO: get parsleyjs working with divs
+        //this.$('#addProjectForm').parsley({inputs: 'input, textarea, select, div.dblclick-edit'});
+        //this.$( '#addProjectForm' ).parsley( 'addItem', '#project-github' );
         return this;
     },
 
@@ -50,7 +54,7 @@ module.exports = Backbone.View.extend({
         "click #reset-btn"        : "resetConfirmModal",
         "click #reset-confirm"    : "resetProject",
         // admin edit save
-        "click #save-btn"         : "editConfirmModal",
+        "click #save-btn"         : "validateForm",
         "click #edit-confirm"     : "editProject",
 
         "dblclick .dblclick-edit" : "addContentEditable"
@@ -92,12 +96,22 @@ module.exports = Backbone.View.extend({
         });
     },
 
+    validateForm: function (e) {
+        e.preventDefault();
+        this.$('#editProjectForm').parsley('destroy');
+        if (this.$('#editProjectForm').parsley('validate')) {
+            console.log('ok');
+            return this.editConfirmModal();
+        }
+        console.log('nah');
+    },
+
     editConfirmModal: function() {
         this.$('#edit-modal').modal({});
     },
 
     editProject: function() {
-        // probably replacing this...
+        // SHOULDDO: probably replacing this...
         this.fetchAnimation();
 
         var updates = {
@@ -118,7 +132,7 @@ module.exports = Backbone.View.extend({
     },
 
     fetchAnimation: function() {
-        // why does this fuck up on second + call?
+        // SHOULDDO: why does this fuck up on second + call?
         self = this;
         this.$("#loading").ajaxStart(function(){
             self.$("#loading").append($('<img class="center" />').attr('src', 'img/ajax-loader.gif'));

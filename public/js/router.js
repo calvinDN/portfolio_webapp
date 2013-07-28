@@ -3,6 +3,7 @@ define(function(require, exports, module) {
         Backbone    = require('Backbone'),
         Home        = require('views/home'),
         Login       = require('views/login'),
+        AdminInfo   = require('views/admin/info'),
         EditProject = require('views/admin/project/edit'),
         AddProject  = require('views/admin/project/add'),
         ListProject = require('views/project/list'),
@@ -18,6 +19,7 @@ module.exports = new (Backbone.Router.extend({
         ""              : "home",
         "login"         : "login",
         "projects"      : "listProjects",
+        "admin/info"    : "adminInfo",
         "projects/add"  : "addProject",
         "projects/edit" : "editProject",
         ":whatever"     : "notFound"
@@ -49,6 +51,19 @@ module.exports = new (Backbone.Router.extend({
         this.headerView.selectMenuItem(); // clear active class from nav
     },
 
+    listProjects: function() {
+        var projects = new Projects();
+        projects.url = "/projects";
+
+        this.registerView(new ListProject({
+            collection: projects,
+            el: $("#content")
+        }), false);
+        projects.fetch();
+        this.headerView.selectMenuItem('browse-menu');
+    },
+
+    /* Admin only routes */
     addProject: function() {
         var projects = new Projects();
         projects.url = "/projects";
@@ -73,16 +88,11 @@ module.exports = new (Backbone.Router.extend({
         this.headerView.selectMenuItem(); // clear active class from nav
     },
 
-    listProjects: function() {
-        var projects = new Projects();
-        projects.url = "/projects";
-
-        this.registerView(new ListProject({
-            collection: projects,
+    adminInfo: function() {
+        this.registerView(new AdminInfo({
             el: $("#content")
-        }), false);
-        projects.fetch();
-        this.headerView.selectMenuItem('browse-menu');
+        }), true);
+        this.headerView.selectMenuItem(); // clear active class from nav
     },
 
     adminCheck: function(view) {
