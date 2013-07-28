@@ -19,24 +19,23 @@ var fs       = require('fs'),
 var success = clc.green;
 var warn    = clc.yellow;
 var info    = clc.blue;
+var error   = clc.red;
 
 var app = express();
 
 app.set('port', process.env.PORT || settings.server.port);
-app.use(express.logger('dev'));  /* 'default', 'short', 'tiny', 'dev' */
+app.use(express.logger('dev'));
 app.use(express.cookieParser());
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.session({ secret: 'figure it out' }));
 app.use(express.limit('1mb'));  // limit size of uploads to lessen the impact of DoS attempts
-// Initialize Passport!  Also use passport.session() middleware, to support
-// persistent login sessions (recommended).
+// passport
 app.use(passport.initialize());
 app.use(passport.session());
 
 // serve up CSS compiled from LESS
-var lessOptions =
-    { // production LESS options
+var lessOptions = {
         once         : true,
         optimization : 2,
         compress     : true
@@ -53,22 +52,23 @@ mongoose.connect(settings.server.db, function onMongooseError(err){
     else {
 		console.log(success("Success! ") + 'Connected to Mongo DB through Mongoose.');
 
-        // make sure the admin exists
+        // make sure an admin exists
         User.findOne({ username : settings.admin.name }, function(err, user) {
             if (err)
-                return console.log(err);
+                return console.log(error(err));
 
             if (user !== null)
                 return console.log(user);
             else {
+                // No admin exists
                 console.log(warn("Admin doesn't exist, adding admin to DB."));
                 user = new User();
                 user.username = settings.admin.name;
-                user.password = settings.admin.name;
+                user.password = settings.admin.password;
 
                 user.save(function(err) {
                     if(err) {
-                        console.log(err);
+                        console.log(error(err));
                     } else {
                         console.log(success("Success!") + info(" User: " + user.username) + " added to DB.");
                     }
@@ -77,7 +77,7 @@ mongoose.connect(settings.server.db, function onMongooseError(err){
         });
     }
 
-    // SHOULDDO: do something with this
+    // SHOULDDO: something with this
     if (argv.c)
         console.log(warn("-w Wiping database."));
     if (argv.p)
@@ -90,10 +90,10 @@ fs.readdirSync('models').forEach(function(file) {
     require('./models/' + filename);
 });
 
-// authentication for all API routes
+// authentication for specific API routes
 app.all("/admin/*", require('./routes/authentication').ensureAuthentication);
 
-// read the Routes Files
+// read the Routes files
 var project = require('./routes/projects')(app);
 var auth    = require('./routes/authentication')(app);
 var	admin   = require('./routes/admin/projects')(app, "/admin");
