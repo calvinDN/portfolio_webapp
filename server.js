@@ -14,19 +14,15 @@ var fs       = require('fs'),
         .boolean(['w','p']) //wipe, populate
         .argv
     ;
-// settings
-// SHOULDDO: read from external config file
-var port = 8000;
-var dbPath = "mongodb://localhost/calvindn";
 
-// colors
+// clc colours
 var success = clc.green;
 var warn    = clc.yellow;
 var info    = clc.blue;
 
 var app = express();
 
-app.set('port', process.env.PORT || port);
+app.set('port', process.env.PORT || settings.server.port);
 app.use(express.logger('dev'));  /* 'default', 'short', 'tiny', 'dev' */
 app.use(express.cookieParser());
 app.use(express.bodyParser());
@@ -51,35 +47,37 @@ app.use('/styles', less(_.extend({ src : __dirname + '/public/styles' }, lessOpt
 app.use(express.static(path.join(__dirname, '/public')));
 
 // setup the DB
-mongoose.connect(dbPath, function onMongooseError(err){
+mongoose.connect(settings.server.db, function onMongooseError(err){
     if (err)
 		throw err;
     else {
 		console.log(success("Success! ") + 'Connected to Mongo DB through Mongoose.');
 
-        User.findOne({ username : "admin" }, function(err, user) {
+        // make sure the admin exists
+        User.findOne({ username : settings.admin.name }, function(err, user) {
             if (err)
                 return console.log(err);
 
             if (user !== null)
                 return console.log(user);
             else {
-                console.log("Adding test admin.");
+                console.log(warn("Admin doesn't exist, adding admin to DB."));
                 user = new User();
-                user.username = "admin";
-                user.password = "password";
+                user.username = settings.admin.name;
+                user.password = settings.admin.name;
 
                 user.save(function(err) {
                     if(err) {
                         console.log(err);
                     } else {
-                        console.log('user: ' + user.username + " saved.");
+                        console.log(success("Success!") + info(" User: " + user.username) + " added to DB.");
                     }
                 });
             }
         });
     }
 
+    // SHOULDDO: do something with this
     if (argv.c)
         console.log(warn("-w Wiping database."));
     if (argv.p)
