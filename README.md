@@ -17,3 +17,7 @@ To deploy on Heroku:
 <li>heroku addons:add mongolab:sandbox</li>
 <li>heroku ps:scale web=1</li>
 </ol>
+
+optional:
+heroku addons:add scheduler:standard
+ - useful if you are using a free heroku account and want to keep your app alive.
