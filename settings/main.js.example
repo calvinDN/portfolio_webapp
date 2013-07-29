@@ -10,5 +10,4 @@ settings.server = {};
 settings.server.port = process.env.WEB_PORT || 8000;
 settings.server.db = "mongodb://localhost/myDB";
 
-
 module.exports = settings;

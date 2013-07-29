@@ -3,6 +3,7 @@ var mail = {};
 mail.service   = "Gmail";
 mail.user      = "myEmail@gmail.com";
 mail.password  = "myPassword";
-mail.sender    = "myEmail@gmail.com"; // who you want the sender of the email to be
+mail.sender    = "myEmail@gmail.com"; // who you want the mail to be sent from
+mail.receiver  = "myEmail@gmail.com"; // who you want the mail to be sent to
 
 module.exports = mail;

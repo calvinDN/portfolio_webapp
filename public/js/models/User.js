@@ -8,11 +8,9 @@ define(function(require, exports, module) {
         initialize: function() {
         }
     },
-    {  // static class properties
-
+    {
         /**
          * Fetches the currently logged in user.
-         * @return {User} the currently authenticated user
          */
         getCurrent : function(callback) {
             var user = new User();
@@ -36,7 +34,6 @@ define(function(require, exports, module) {
         /**
          * The user model that describes the currently authenticated user.
          * Null or no user is authenticated.
-         * @type {User}
          */
         current : null
     });
