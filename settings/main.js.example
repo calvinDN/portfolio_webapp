@@ -2,12 +2,12 @@
 
 var settings = {}
 
-settings.admin = {};
-settings.admin.name = "admin";
+settings.admin          = {};
+settings.admin.name     = "admin";
 settings.admin.password = "password";
 
-settings.server = {};
+settings.server      = {};
 settings.server.port = process.env.WEB_PORT || 8000;
-settings.server.db = "mongodb://localhost/myDB";
+settings.server.db   = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || "mongodb://localhost/myDB";
 
 module.exports = settings;
