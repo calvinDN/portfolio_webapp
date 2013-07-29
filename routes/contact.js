@@ -2,7 +2,7 @@ var path       = require('path'),
     Project    = require(path.resolve('models/Project')),
     Resource   = require(path.resolve('models/Resource')),
     nodemailer = require("nodemailer"),
-    mail       = require(path.resolve('settings/mail'));
+    mail       = require(path.resolve('config/mail'));
 
 module.exports = function(app) {
 

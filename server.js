@@ -9,7 +9,7 @@ var fs         = require('fs'),
     passport   = require('passport'),
     path       = require('path'),
     User       = require(path.resolve('models/User')),
-    settings   = require('./settings/main'),
+    settings   = require('config/main'),
     argv       = require('optimist')
         .boolean(['w','p']) //wipe, populate
         .argv
