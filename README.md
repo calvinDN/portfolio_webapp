@@ -1,7 +1,7 @@
 portfolio_webapp
 ================
 
-This web application is being made mostly to improve my web development skills so if you have any critisms I'd appreciate any communication.
+This web application is being made mostly to improve my web development skills so if you have any criticisms I'd appreciate any communication.
 
 You can see a [deployed example here](http://glacial-inlet-5558.herokuapp.com/), it currently may or may not be up to date. It is a work in progress, you can see my [Trello board here](https://trello.com/b/TR7a0Rw9/portfolio-webapp) to see what I am planning/currently working on/ditching.
 
