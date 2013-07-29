@@ -1,16 +1,16 @@
-var fs       = require('fs'),
-    express  = require('express'),
-	path     = require('path'),
-	http     = require('http'),
-	mongoose = require('mongoose'),
-    less     = require('less-middleware'),
-	clc      = require('cli-color'),
-	_        = require('underscore'),
-    passport = require('passport'),
-    path     = require('path'),
-    User     = require(path.resolve('models/User')),
-    settings = require('./settings'),
-    argv     = require('optimist')
+var fs         = require('fs'),
+    express    = require('express'),
+    path       = require('path'),
+    http       = require('http'),
+    mongoose   = require('mongoose'),
+    less       = require('less-middleware'),
+    clc        = require('cli-color'),
+    _          = require('underscore'),
+    passport   = require('passport'),
+    path       = require('path'),
+    User       = require(path.resolve('models/User')),
+    settings   = require('./settings/main'),
+    argv       = require('optimist')
         .boolean(['w','p']) //wipe, populate
         .argv
     ;
@@ -30,6 +30,7 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.session({ secret: 'figure it out' }));
 app.use(express.limit('1mb'));  // limit size of uploads to lessen the impact of DoS attempts
+
 // passport
 app.use(passport.initialize());
 app.use(passport.session());
@@ -95,6 +96,7 @@ app.all("/admin/*", require('./routes/authentication').ensureAuthentication);
 
 // read the Routes files
 var project = require('./routes/projects')(app);
+var project = require('./routes/contact')(app);
 var auth    = require('./routes/authentication')(app);
 var	admin   = require('./routes/admin/projects')(app, "/admin");
 var user    = require('./routes/admin/users')(app, "/admin");

@@ -4,18 +4,24 @@
     <h3 id="myModalLabel">Contact Form</h3>
 </div>
 <div class="modal-body">
-    <form name="contactform">
+    <form id="contactForm">
         <fieldset>
             <label>Name</label>
-            <input type="text" name="name" maxlength="50" size="30">
+            <input type="text" id="contact-name" maxlength="50" data-maxlength="50" data-required="true" data-notblank="true" size="30">
             <label>Email</label>
-            <input type="text" name="email" maxlength="80" size="30" placeholder="email@example.com">
+            <input type="text" id="contact-email" maxlength="50" data-maxlength="50" data-type="email" data-required="true" data-notblank="true" size="30" placeholder="email@example.com">
             <label>Comments</label>
-            <textarea rows="3" name="comments" maxlength="1000"></textarea>
+            <textarea rows="3" id="contact-msg" maxlength="200" data-maxlength="200" data-required="true" data-notblank="true" ></textarea>
+            <div class="checkbox">
+                <label>
+                    <input name="clientCopy" id="contact-client" type="checkbox"> Send me a copy
+                </label>
+            </div>
         </fieldset>
     </form>
+    <div id="outcome"></div>
 </div>
 <div class="modal-footer">
-    <button class="modal-submit btn btn-primary">Submit</button>
-    <button class="modal-close btn" data-dismiss="modal">Close</button>
+    <button class="contact-submit btn btn-primary">Submit</button>
+    <button class="contact-close btn" data-dismiss="modal">Close</button>
 </div>
