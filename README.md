@@ -17,5 +17,5 @@ To deploy on Heroku:
 <li>git push heroku master</li>
 <li>heroku addons:add mongolab:sandbox</li>
 <li>heroku ps:scale web=1</li>
-<li> (Optional, useful for free accounts) If your app idles for ~hour it may shutdown so you can counter this by setting up a Heroku scheduler (heroku addons:add scheduler:standard) or you could use a service like [Pingdom.com](https://www.pingdom.com/) (they have a free tier). </li>
+<li> (Optional, useful for free accounts) If your app idles for ~hour it may shutdown so you can counter this by setting up a Heroku scheduler (heroku addons:add scheduler:standard) or you could use a service like <a href="https://www.pingdom.com/">Pingdom</a> (they have a free tier). </li>
 </ol>
