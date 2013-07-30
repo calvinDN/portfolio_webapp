@@ -8,7 +8,8 @@ You can see a [deployed example here](http://floating-atoll-7245.herokuapp.com/)
 
 To deploy on Heroku:
 -------------------
-<ol>
+<ol start="0">
+<li>Install Heroku and Git.</li>
 <li>git clone https://github.com/calvinDN/portfolio_webapp.git</li>
 <li>cd portfolio_webapp</li>
 <li>Edit JS config files in the *settings* folder</li>
@@ -16,8 +17,5 @@ To deploy on Heroku:
 <li>git push heroku master</li>
 <li>heroku addons:add mongolab:sandbox</li>
 <li>heroku ps:scale web=1</li>
+<li> (Optional, useful for free accounts) If your app idles for ~hour it may shutdown so you can counter this by setting up a Heroku scheduler (heroku addons:add scheduler:standard) or you could use a service like [Pingdom.com](https://www.pingdom.com/) (they have a free tier). </li>
 </ol>
-
-optional:
-heroku addons:add scheduler:standard
- - useful if you are using a free heroku account and want to keep your app alive.
