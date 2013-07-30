@@ -11,6 +11,7 @@ footer p a.email{margin-left:15px}
 .contact-menu{cursor:pointer}
 #content{padding-left:15px;padding-right:15px}
 a.btn-navbar{margin-bottom:5px}
+.me{margin-top:60px}
 input.parsley-success,textarea.parsley-success,div.parsley-success{color:#FFF !important;background-color:#468847 !important;border:1px solid #D6E9C6 !important}
 input.parsley-error,textarea.parsley-error,div.parsley-error{color:#FFF !important;background-color:#B94A48 !important;border:1px solid #EED3D7 !important}
 ul.parsley-error-list{font-size:11px;margin:2px;list-style-type:none}
