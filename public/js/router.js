@@ -79,12 +79,12 @@ module.exports = new (Backbone.Router.extend({
     editProject: function() {
         var projects = new Projects();
         projects.url = "/projects";
+        projects.fetch();
 
         this.registerView(new EditProject({
             collection: projects,
             el: $("#content")
         }), true);
-        projects.fetch();
         this.headerView.selectMenuItem(); // clear active class from nav
     },
 

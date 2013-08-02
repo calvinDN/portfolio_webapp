@@ -33,3 +33,11 @@ Deploy on Heroku:
 Compatibility
 -------------
 IE8+
+
+Bugs
+-------------
+I have not spent much time testing, if you find any bugs feel free to contact me although depending on my current workload I may write them off as features.
+
+Author
+-------------
+Calvin Nichols
