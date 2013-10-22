@@ -96,7 +96,7 @@ app.all("/admin/*", require('./routes/authentication').ensureAuthentication);
 
 // read the Routes files
 var project = require('./routes/projects')(app);
-var project = require('./routes/contact')(app);
+var contact = require('./routes/contact')(app);
 var auth    = require('./routes/authentication')(app);
 var	admin   = require('./routes/admin/projects')(app, "/admin");
 var user    = require('./routes/admin/users')(app, "/admin");
